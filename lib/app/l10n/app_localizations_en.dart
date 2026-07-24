@@ -10,4 +10,124 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get appName => 'Supermarket Tracker';
+
+  @override
+  String get loginTitle => 'Sign in';
+
+  @override
+  String get loginSubtitle => 'Enter your credentials to continue';
+
+  @override
+  String get loginUsername => 'Username';
+
+  @override
+  String get loginPassword => 'Password';
+
+  @override
+  String get loginSubmit => 'Sign in';
+
+  @override
+  String get loginErrorEmpty => 'Enter username and password';
+
+  @override
+  String get dashboardTitle => 'Dashboard';
+
+  @override
+  String get dashboardRevenue => 'Sold this month';
+
+  @override
+  String get dashboardProfit => 'Profit this month';
+
+  @override
+  String get dashboardLoss => 'Loss this month';
+
+  @override
+  String get dashboardTicket => 'Average ticket';
+
+  @override
+  String get dashboardSalesToday => 'Sales today';
+
+  @override
+  String get dashboardSalesMonth => 'Sales this month';
+
+  @override
+  String get dashboardLatestSales => 'Latest sales';
+
+  @override
+  String get dashboardTopProducts => 'Top selling products';
+
+  @override
+  String get dashboardLowStock => 'Low stock';
+
+  @override
+  String get storesTitle => 'Stores';
+
+  @override
+  String get newStore => 'New store';
+
+  @override
+  String get storeDetailTitle => 'Store details';
+
+  @override
+  String get storeCode => 'Code';
+
+  @override
+  String get storeName => 'Name';
+
+  @override
+  String get storeCompany => 'Company';
+
+  @override
+  String get storeStatus => 'Status';
+
+  @override
+  String get noStores => 'No stores registered';
+
+  @override
+  String get storeCreated => 'Store created successfully';
+
+  @override
+  String get navSales => 'Sales';
+
+  @override
+  String get navProducts => 'Products';
+
+  @override
+  String get navStock => 'Stock';
+
+  @override
+  String get navCash => 'Cash';
+
+  @override
+  String get navCustomers => 'Customers';
+
+  @override
+  String get navUsers => 'Users';
+
+  @override
+  String get navCompany => 'Company';
+
+  @override
+  String get navMore => 'More';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get comingSoonMessage => 'This section is still under development.';
+
+  @override
+  String get genericError => 'Something went wrong';
+
+  @override
+  String get retry => 'Try again';
+
+  @override
+  String get requiredField => 'Required field';
 }

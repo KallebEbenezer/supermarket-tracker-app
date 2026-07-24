@@ -19,6 +19,12 @@ abstract interface class ApiClient {
     Object? data,
     required T Function(dynamic data) parser,
   });
+  Future<T> patch<T>(
+    String path, {
+    Object? data,
+    Map<String, dynamic>? queryParameters,
+    required T Function(dynamic data) parser,
+  });
   Future<void> delete(String path, {Object? data});
 }
 
@@ -54,6 +60,17 @@ class DioApiClient implements ApiClient {
     Object? data,
     required T Function(dynamic data) parser,
   }) => _execute(_dio.put<dynamic>(path, data: data), parser);
+
+  @override
+  Future<T> patch<T>(
+    String path, {
+    Object? data,
+    Map<String, dynamic>? queryParameters,
+    required T Function(dynamic data) parser,
+  }) => _execute(
+    _dio.patch<dynamic>(path, data: data, queryParameters: queryParameters),
+    parser,
+  );
 
   @override
   Future<void> delete(String path, {Object? data}) async {

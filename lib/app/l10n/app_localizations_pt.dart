@@ -10,6 +10,126 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get appName => 'Supermarket Tracker';
+
+  @override
+  String get loginTitle => 'Entrar';
+
+  @override
+  String get loginSubtitle => 'Informe suas credenciais para continuar';
+
+  @override
+  String get loginUsername => 'Usuário';
+
+  @override
+  String get loginPassword => 'Senha';
+
+  @override
+  String get loginSubmit => 'Entrar';
+
+  @override
+  String get loginErrorEmpty => 'Informe usuário e senha';
+
+  @override
+  String get dashboardTitle => 'Painel';
+
+  @override
+  String get dashboardRevenue => 'Vendido no mês';
+
+  @override
+  String get dashboardProfit => 'Lucro no mês';
+
+  @override
+  String get dashboardLoss => 'Prejuízo no mês';
+
+  @override
+  String get dashboardTicket => 'Ticket médio';
+
+  @override
+  String get dashboardSalesToday => 'Vendas do dia';
+
+  @override
+  String get dashboardSalesMonth => 'Vendas do mês';
+
+  @override
+  String get dashboardLatestSales => 'Últimas vendas';
+
+  @override
+  String get dashboardTopProducts => 'Produtos mais vendidos';
+
+  @override
+  String get dashboardLowStock => 'Estoque baixo';
+
+  @override
+  String get storesTitle => 'Lojas';
+
+  @override
+  String get newStore => 'Nova loja';
+
+  @override
+  String get storeDetailTitle => 'Detalhes da loja';
+
+  @override
+  String get storeCode => 'Código';
+
+  @override
+  String get storeName => 'Nome';
+
+  @override
+  String get storeCompany => 'Empresa';
+
+  @override
+  String get storeStatus => 'Status';
+
+  @override
+  String get noStores => 'Nenhuma loja cadastrada';
+
+  @override
+  String get storeCreated => 'Loja criada com sucesso';
+
+  @override
+  String get navSales => 'Vendas';
+
+  @override
+  String get navProducts => 'Produtos';
+
+  @override
+  String get navStock => 'Estoque';
+
+  @override
+  String get navCash => 'Caixa';
+
+  @override
+  String get navCustomers => 'Clientes';
+
+  @override
+  String get navUsers => 'Usuários';
+
+  @override
+  String get navCompany => 'Empresa';
+
+  @override
+  String get navMore => 'Mais';
+
+  @override
+  String get save => 'Salvar';
+
+  @override
+  String get cancel => 'Cancelar';
+
+  @override
+  String get comingSoon => 'Em breve';
+
+  @override
+  String get comingSoonMessage => 'Esta seção ainda está em desenvolvimento.';
+
+  @override
+  String get genericError => 'Algo deu errado';
+
+  @override
+  String get retry => 'Tentar novamente';
+
+  @override
+  String get requiredField => 'Campo obrigatório';
 }
 
 /// The translations for Portuguese, as used in Brazil (`pt_BR`).
@@ -18,4 +138,124 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get appName => 'Supermarket Tracker';
+
+  @override
+  String get loginTitle => 'Entrar';
+
+  @override
+  String get loginSubtitle => 'Informe suas credenciais para continuar';
+
+  @override
+  String get loginUsername => 'Usuário';
+
+  @override
+  String get loginPassword => 'Senha';
+
+  @override
+  String get loginSubmit => 'Entrar';
+
+  @override
+  String get loginErrorEmpty => 'Informe usuário e senha';
+
+  @override
+  String get dashboardTitle => 'Painel';
+
+  @override
+  String get dashboardRevenue => 'Vendido no mês';
+
+  @override
+  String get dashboardProfit => 'Lucro no mês';
+
+  @override
+  String get dashboardLoss => 'Prejuízo no mês';
+
+  @override
+  String get dashboardTicket => 'Ticket médio';
+
+  @override
+  String get dashboardSalesToday => 'Vendas do dia';
+
+  @override
+  String get dashboardSalesMonth => 'Vendas do mês';
+
+  @override
+  String get dashboardLatestSales => 'Últimas vendas';
+
+  @override
+  String get dashboardTopProducts => 'Produtos mais vendidos';
+
+  @override
+  String get dashboardLowStock => 'Estoque baixo';
+
+  @override
+  String get storesTitle => 'Lojas';
+
+  @override
+  String get newStore => 'Nova loja';
+
+  @override
+  String get storeDetailTitle => 'Detalhes da loja';
+
+  @override
+  String get storeCode => 'Código';
+
+  @override
+  String get storeName => 'Nome';
+
+  @override
+  String get storeCompany => 'Empresa';
+
+  @override
+  String get storeStatus => 'Status';
+
+  @override
+  String get noStores => 'Nenhuma loja cadastrada';
+
+  @override
+  String get storeCreated => 'Loja criada com sucesso';
+
+  @override
+  String get navSales => 'Vendas';
+
+  @override
+  String get navProducts => 'Produtos';
+
+  @override
+  String get navStock => 'Estoque';
+
+  @override
+  String get navCash => 'Caixa';
+
+  @override
+  String get navCustomers => 'Clientes';
+
+  @override
+  String get navUsers => 'Usuários';
+
+  @override
+  String get navCompany => 'Empresa';
+
+  @override
+  String get navMore => 'Mais';
+
+  @override
+  String get save => 'Salvar';
+
+  @override
+  String get cancel => 'Cancelar';
+
+  @override
+  String get comingSoon => 'Em breve';
+
+  @override
+  String get comingSoonMessage => 'Esta seção ainda está em desenvolvimento.';
+
+  @override
+  String get genericError => 'Algo deu errado';
+
+  @override
+  String get retry => 'Tentar novamente';
+
+  @override
+  String get requiredField => 'Campo obrigatório';
 }

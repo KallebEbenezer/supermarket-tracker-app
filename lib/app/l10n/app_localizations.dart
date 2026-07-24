@@ -104,6 +104,246 @@ abstract class AppLocalizations {
   /// In pt_BR, this message translates to:
   /// **'Supermarket Tracker'**
   String get appName;
+
+  /// No description provided for @loginTitle.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Entrar'**
+  String get loginTitle;
+
+  /// No description provided for @loginSubtitle.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Informe suas credenciais para continuar'**
+  String get loginSubtitle;
+
+  /// No description provided for @loginUsername.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Usuário'**
+  String get loginUsername;
+
+  /// No description provided for @loginPassword.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Senha'**
+  String get loginPassword;
+
+  /// No description provided for @loginSubmit.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Entrar'**
+  String get loginSubmit;
+
+  /// No description provided for @loginErrorEmpty.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Informe usuário e senha'**
+  String get loginErrorEmpty;
+
+  /// No description provided for @dashboardTitle.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Painel'**
+  String get dashboardTitle;
+
+  /// No description provided for @dashboardRevenue.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Vendido no mês'**
+  String get dashboardRevenue;
+
+  /// No description provided for @dashboardProfit.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Lucro no mês'**
+  String get dashboardProfit;
+
+  /// No description provided for @dashboardLoss.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Prejuízo no mês'**
+  String get dashboardLoss;
+
+  /// No description provided for @dashboardTicket.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Ticket médio'**
+  String get dashboardTicket;
+
+  /// No description provided for @dashboardSalesToday.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Vendas do dia'**
+  String get dashboardSalesToday;
+
+  /// No description provided for @dashboardSalesMonth.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Vendas do mês'**
+  String get dashboardSalesMonth;
+
+  /// No description provided for @dashboardLatestSales.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Últimas vendas'**
+  String get dashboardLatestSales;
+
+  /// No description provided for @dashboardTopProducts.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Produtos mais vendidos'**
+  String get dashboardTopProducts;
+
+  /// No description provided for @dashboardLowStock.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Estoque baixo'**
+  String get dashboardLowStock;
+
+  /// No description provided for @storesTitle.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Lojas'**
+  String get storesTitle;
+
+  /// No description provided for @newStore.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Nova loja'**
+  String get newStore;
+
+  /// No description provided for @storeDetailTitle.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Detalhes da loja'**
+  String get storeDetailTitle;
+
+  /// No description provided for @storeCode.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Código'**
+  String get storeCode;
+
+  /// No description provided for @storeName.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Nome'**
+  String get storeName;
+
+  /// No description provided for @storeCompany.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Empresa'**
+  String get storeCompany;
+
+  /// No description provided for @storeStatus.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Status'**
+  String get storeStatus;
+
+  /// No description provided for @noStores.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Nenhuma loja cadastrada'**
+  String get noStores;
+
+  /// No description provided for @storeCreated.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Loja criada com sucesso'**
+  String get storeCreated;
+
+  /// No description provided for @navSales.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Vendas'**
+  String get navSales;
+
+  /// No description provided for @navProducts.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Produtos'**
+  String get navProducts;
+
+  /// No description provided for @navStock.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Estoque'**
+  String get navStock;
+
+  /// No description provided for @navCash.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Caixa'**
+  String get navCash;
+
+  /// No description provided for @navCustomers.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Clientes'**
+  String get navCustomers;
+
+  /// No description provided for @navUsers.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Usuários'**
+  String get navUsers;
+
+  /// No description provided for @navCompany.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Empresa'**
+  String get navCompany;
+
+  /// No description provided for @navMore.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Mais'**
+  String get navMore;
+
+  /// No description provided for @save.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Salvar'**
+  String get save;
+
+  /// No description provided for @cancel.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Cancelar'**
+  String get cancel;
+
+  /// No description provided for @comingSoon.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Em breve'**
+  String get comingSoon;
+
+  /// No description provided for @comingSoonMessage.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Esta seção ainda está em desenvolvimento.'**
+  String get comingSoonMessage;
+
+  /// No description provided for @genericError.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Algo deu errado'**
+  String get genericError;
+
+  /// No description provided for @retry.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Tentar novamente'**
+  String get retry;
+
+  /// No description provided for @requiredField.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Campo obrigatório'**
+  String get requiredField;
 }
 
 class _AppLocalizationsDelegate

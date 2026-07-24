@@ -33,7 +33,7 @@ class OpenApiSupermarketDataSource implements SupermarketRemoteDataSource {
   @override
   Future<ApiEnvelope<Map<String, dynamic>>> getDashboard({required String companyId, String? storeId, int limit = 10}) => _getMap(
     '/api/v1/dashboard',
-    queryParameters: {'empresaId': companyId, if (storeId != null) 'lojaId': storeId, 'limite': limit},
+    queryParameters: {'empresaId': companyId, 'lojaId': storeId, 'limite': limit},
   );
 
   @override

@@ -1,0 +1,3 @@
+#include "Generated.xcconfig"
+PRODUCT_BUNDLE_IDENTIFIER=com.supermarkettracker.supermarketTracker.dev
+APP_DISPLAY_NAME=Supermarket Tracker Dev

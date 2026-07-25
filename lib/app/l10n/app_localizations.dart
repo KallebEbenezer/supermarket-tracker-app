@@ -518,6 +518,12 @@ abstract class AppLocalizations {
   /// In pt_BR, this message translates to:
   /// **'Detalhes do usuário'**
   String get userDetailTitle;
+
+  /// No description provided for @noStockMovements.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Nenhuma movimentação de estoque cadastrada'**
+  String get noStockMovements;
 }
 
 class _AppLocalizationsDelegate

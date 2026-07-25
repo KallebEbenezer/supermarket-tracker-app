@@ -16,6 +16,23 @@ class OpenApiStockMovementRemoteDataSource
   final StockMovementMapper _mapper;
 
   @override
+  Future<ApiEnvelope<List<StockMovementEntity>>> listStockMovements(
+    String companyId, {
+    String? storeId,
+  }) =>
+      _client.get(
+        '/api/v1/estoque/movimentacoes',
+        queryParameters: {
+          'empresaId': companyId,
+          if (storeId != null) 'lojaId': storeId,
+        },
+        parser: (data) => ApiEnvelope.fromJson(
+          data as Map<String, dynamic>,
+          (value) => _mapper.fromJsonList(value as List<dynamic>),
+        ),
+      );
+
+  @override
   Future<ApiEnvelope<StockMovementEntity>> registerStockMovement(
     Map<String, dynamic> payload,
   ) =>

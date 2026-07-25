@@ -217,6 +217,9 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get userDetailTitle => 'Detalhes do usuário';
+
+  @override
+  String get noStockMovements => 'Nenhuma movimentação de estoque cadastrada';
 }
 
 /// The translations for Portuguese, as used in Brazil (`pt_BR`).
@@ -432,4 +435,7 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get userDetailTitle => 'Detalhes do usuário';
+
+  @override
+  String get noStockMovements => 'Nenhuma movimentação de estoque cadastrada';
 }

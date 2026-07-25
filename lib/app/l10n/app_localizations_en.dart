@@ -217,4 +217,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get userDetailTitle => 'User details';
+
+  @override
+  String get noStockMovements => 'No stock movements registered';
 }

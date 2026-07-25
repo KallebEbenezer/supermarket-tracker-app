@@ -69,5 +69,6 @@
   "userPhone": "Telefone",
   "userStatus": "Status",
   "newUser": "Novo usuário",
-  "userDetailTitle": "Detalhes do usuário"
+  "userDetailTitle": "Detalhes do usuário",
+  "noStockMovements": "Nenhuma movimentação de estoque cadastrada"
 }

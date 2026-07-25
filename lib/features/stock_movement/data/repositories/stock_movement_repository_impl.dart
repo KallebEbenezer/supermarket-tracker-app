@@ -9,6 +9,20 @@ class StockMovementRepositoryImpl implements StockMovementRepository {
   final StockMovementRemoteDataSource _remote;
 
   @override
+  Future<List<StockMovementEntity>> listStockMovements(
+    String companyId, {
+    String? storeId,
+  }) async {
+    try {
+      final envelope =
+          await _remote.listStockMovements(companyId, storeId: storeId);
+      return envelope.requireData();
+    } on Object catch (error) {
+      throw ErrorMapper.map(error);
+    }
+  }
+
+  @override
   Future<StockMovementEntity> registerStockMovement(
     Map<String, dynamic> payload,
   ) async {

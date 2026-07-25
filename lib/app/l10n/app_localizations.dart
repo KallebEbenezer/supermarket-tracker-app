@@ -344,6 +344,72 @@ abstract class AppLocalizations {
   /// In pt_BR, this message translates to:
   /// **'Campo obrigatório'**
   String get requiredField;
+
+  /// No description provided for @noProducts.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Nenhum produto cadastrado'**
+  String get noProducts;
+
+  /// No description provided for @productCreated.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Produto criado com sucesso'**
+  String get productCreated;
+
+  /// No description provided for @productName.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Nome'**
+  String get productName;
+
+  /// No description provided for @productBarcode.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Código de barras'**
+  String get productBarcode;
+
+  /// No description provided for @productSalePrice.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Preço de venda'**
+  String get productSalePrice;
+
+  /// No description provided for @productPurchasePrice.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Preço de compra'**
+  String get productPurchasePrice;
+
+  /// No description provided for @productMinStock.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Estoque mínimo'**
+  String get productMinStock;
+
+  /// No description provided for @productCurrentStock.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Estoque atual'**
+  String get productCurrentStock;
+
+  /// No description provided for @productStatus.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Status'**
+  String get productStatus;
+
+  /// No description provided for @newProduct.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Novo produto'**
+  String get newProduct;
+
+  /// No description provided for @productDetailTitle.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Detalhes do produto'**
+  String get productDetailTitle;
 }
 
 class _AppLocalizationsDelegate

@@ -130,6 +130,39 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get requiredField => 'Campo obrigatório';
+
+  @override
+  String get noProducts => 'Nenhum produto cadastrado';
+
+  @override
+  String get productCreated => 'Produto criado com sucesso';
+
+  @override
+  String get productName => 'Nome';
+
+  @override
+  String get productBarcode => 'Código de barras';
+
+  @override
+  String get productSalePrice => 'Preço de venda';
+
+  @override
+  String get productPurchasePrice => 'Preço de compra';
+
+  @override
+  String get productMinStock => 'Estoque mínimo';
+
+  @override
+  String get productCurrentStock => 'Estoque atual';
+
+  @override
+  String get productStatus => 'Status';
+
+  @override
+  String get newProduct => 'Novo produto';
+
+  @override
+  String get productDetailTitle => 'Detalhes do produto';
 }
 
 /// The translations for Portuguese, as used in Brazil (`pt_BR`).
@@ -258,4 +291,37 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get requiredField => 'Campo obrigatório';
+
+  @override
+  String get noProducts => 'Nenhum produto cadastrado';
+
+  @override
+  String get productCreated => 'Produto criado com sucesso';
+
+  @override
+  String get productName => 'Nome';
+
+  @override
+  String get productBarcode => 'Código de barras';
+
+  @override
+  String get productSalePrice => 'Preço de venda';
+
+  @override
+  String get productPurchasePrice => 'Preço de compra';
+
+  @override
+  String get productMinStock => 'Estoque mínimo';
+
+  @override
+  String get productCurrentStock => 'Estoque atual';
+
+  @override
+  String get productStatus => 'Status';
+
+  @override
+  String get newProduct => 'Novo produto';
+
+  @override
+  String get productDetailTitle => 'Detalhes do produto';
 }

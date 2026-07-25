@@ -130,4 +130,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get requiredField => 'Required field';
+
+  @override
+  String get noProducts => 'No products registered';
+
+  @override
+  String get productCreated => 'Product created successfully';
+
+  @override
+  String get productName => 'Name';
+
+  @override
+  String get productBarcode => 'Barcode';
+
+  @override
+  String get productSalePrice => 'Sale price';
+
+  @override
+  String get productPurchasePrice => 'Purchase price';
+
+  @override
+  String get productMinStock => 'Minimum stock';
+
+  @override
+  String get productCurrentStock => 'Current stock';
+
+  @override
+  String get productStatus => 'Status';
+
+  @override
+  String get newProduct => 'New product';
+
+  @override
+  String get productDetailTitle => 'Product details';
 }

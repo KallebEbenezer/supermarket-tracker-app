@@ -40,5 +40,16 @@
   "comingSoonMessage": "This section is still under development.",
   "genericError": "Something went wrong",
   "retry": "Try again",
-  "requiredField": "Required field"
+  "requiredField": "Required field",
+  "noProducts": "No products registered",
+  "productCreated": "Product created successfully",
+  "productName": "Name",
+  "productBarcode": "Barcode",
+  "productSalePrice": "Sale price",
+  "productPurchasePrice": "Purchase price",
+  "productMinStock": "Minimum stock",
+  "productCurrentStock": "Current stock",
+  "productStatus": "Status",
+  "newProduct": "New product",
+  "productDetailTitle": "Product details"
 }

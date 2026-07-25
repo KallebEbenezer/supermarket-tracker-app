@@ -9,6 +9,16 @@ class ProductRepositoryImpl implements ProductRepository {
   final ProductRemoteDataSource _remote;
 
   @override
+  Future<List<ProductEntity>> listProducts(String companyId) async {
+    try {
+      final envelope = await _remote.listProducts(companyId);
+      return envelope.requireData();
+    } on Object catch (error) {
+      throw ErrorMapper.map(error);
+    }
+  }
+
+  @override
   Future<ProductEntity> createProduct(Map<String, dynamic> payload) async {
     try {
       final envelope = await _remote.createProduct(payload);

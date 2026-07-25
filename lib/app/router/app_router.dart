@@ -13,6 +13,9 @@ import '../../features/dashboard/presentation/screens/dashboard_screen.dart';
 import '../../features/store/presentation/screens/store_create_screen.dart';
 import '../../features/store/presentation/screens/store_detail_screen.dart';
 import '../../features/store/presentation/screens/store_list_screen.dart';
+import '../../features/product/presentation/screens/product_list_screen.dart';
+import '../../features/product/presentation/screens/product_create_screen.dart';
+import '../../features/product/presentation/screens/product_detail_screen.dart';
 import '../l10n/app_localizations.dart';
 
 /// Rotas públicas de autenticação (acessíveis sem sessão).

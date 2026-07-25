@@ -3,6 +3,9 @@ import '../../domain/entities/product_entity.dart';
 
 /// Interface that defines the data‑source operations for products.
 abstract class ProductRemoteDataSource {
+  /// List products for a given company.
+  Future<ApiEnvelope<List<ProductEntity>>> listProducts(String companyId);
+
   /// Create a new product.
   Future<ApiEnvelope<ProductEntity>> createProduct(Map<String, dynamic> payload);
 

@@ -62,6 +62,11 @@ final List<NavDestination> kNavDestinations = [
     icon: AppIcons.inventory,
     route: '/products',
     primary: true,
+    fab: (context) => FloatingActionButton(
+      onPressed: () => context.go('/products/new'),
+      tooltip: 'Novo produto',
+      child: const Icon(AppIcons.add),
+    ),
   ),
   NavDestination(
     id: 'stock',

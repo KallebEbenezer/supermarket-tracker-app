@@ -15,6 +15,17 @@ class OpenApiProductRemoteDataSource implements ProductRemoteDataSource {
   final ProductMapper _mapper;
 
   @override
+  Future<ApiEnvelope<List<ProductEntity>>> listProducts(String companyId) =>
+      _client.get(
+        '/api/v1/produtos',
+        queryParameters: {'empresaId': companyId},
+        parser: (data) => ApiEnvelope.fromJson(
+          data as Map<String, dynamic>,
+          (value) => _mapper.fromJsonList(value as List<dynamic>),
+        ),
+      );
+
+  @override
   Future<ApiEnvelope<ProductEntity>> createProduct(Map<String, dynamic> payload) =>
       _client.post(
         '/api/v1/produtos',

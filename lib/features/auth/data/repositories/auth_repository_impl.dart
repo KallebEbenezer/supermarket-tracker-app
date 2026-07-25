@@ -27,7 +27,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<AuthUser> me() => (await _dataSource.me()).requireData();
+  Future<AuthUser> me() async => (await _dataSource.me()).requireData();
 
   @override
   Future<void> solicitarReset(ForgotPasswordPayload payload) =>

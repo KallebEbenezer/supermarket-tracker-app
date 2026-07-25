@@ -470,6 +470,54 @@ abstract class AppLocalizations {
   /// In pt_BR, this message translates to:
   /// **'Detalhes do cliente'**
   String get customerDetailTitle;
+
+  /// No description provided for @noUsers.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Nenhum usuário cadastrado'**
+  String get noUsers;
+
+  /// No description provided for @userCreated.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Usuário criado com sucesso'**
+  String get userCreated;
+
+  /// No description provided for @userName.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Nome'**
+  String get userName;
+
+  /// No description provided for @userEmail.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'E-mail'**
+  String get userEmail;
+
+  /// No description provided for @userPhone.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Telefone'**
+  String get userPhone;
+
+  /// No description provided for @userStatus.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Status'**
+  String get userStatus;
+
+  /// No description provided for @newUser.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Novo usuário'**
+  String get newUser;
+
+  /// No description provided for @userDetailTitle.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Detalhes do usuário'**
+  String get userDetailTitle;
 }
 
 class _AppLocalizationsDelegate

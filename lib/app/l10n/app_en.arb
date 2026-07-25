@@ -61,5 +61,13 @@
   "customerBirthDate": "Birth date",
   "customerStatus": "Status",
   "newCustomer": "New customer",
-  "customerDetailTitle": "Customer details"
+  "customerDetailTitle": "Customer details",
+  "noUsers": "No users registered",
+  "userCreated": "User created successfully",
+  "userName": "Name",
+  "userEmail": "Email",
+  "userPhone": "Phone",
+  "userStatus": "Status",
+  "newUser": "New user",
+  "userDetailTitle": "User details"
 }

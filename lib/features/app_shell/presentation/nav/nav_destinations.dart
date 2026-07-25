@@ -97,6 +97,11 @@ final List<NavDestination> kNavDestinations = [
     label: (l10n) => l10n.navUsers,
     icon: AppIcons.person,
     route: '/users',
+    fab: (context) => FloatingActionButton(
+      onPressed: () => context.go('/users/new'),
+      tooltip: 'Novo usuário',
+      child: const Icon(AppIcons.add),
+    ),
   ),
   NavDestination(
     id: 'company',

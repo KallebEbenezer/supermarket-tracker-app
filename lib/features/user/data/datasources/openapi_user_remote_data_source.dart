@@ -15,6 +15,17 @@ class OpenApiUserRemoteDataSource implements UserRemoteDataSource {
   final UserMapper _mapper;
 
   @override
+  Future<ApiEnvelope<List<UserEntity>>> listUsers(String companyId) =>
+      _client.get(
+        '/api/v1/usuarios',
+        queryParameters: {'empresaId': companyId},
+        parser: (data) => ApiEnvelope.fromJson(
+          data as Map<String, dynamic>,
+          (value) => _mapper.fromJsonList(value as List<dynamic>),
+        ),
+      );
+
+  @override
   Future<ApiEnvelope<UserEntity>> createUser(Map<String, dynamic> payload) => _client.post(
         '/api/v1/usuarios',
         data: payload,

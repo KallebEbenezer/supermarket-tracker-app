@@ -193,6 +193,30 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get customerDetailTitle => 'Detalhes do cliente';
+
+  @override
+  String get noUsers => 'Nenhum usuário cadastrado';
+
+  @override
+  String get userCreated => 'Usuário criado com sucesso';
+
+  @override
+  String get userName => 'Nome';
+
+  @override
+  String get userEmail => 'E-mail';
+
+  @override
+  String get userPhone => 'Telefone';
+
+  @override
+  String get userStatus => 'Status';
+
+  @override
+  String get newUser => 'Novo usuário';
+
+  @override
+  String get userDetailTitle => 'Detalhes do usuário';
 }
 
 /// The translations for Portuguese, as used in Brazil (`pt_BR`).
@@ -384,4 +408,28 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get customerDetailTitle => 'Detalhes do cliente';
+
+  @override
+  String get noUsers => 'Nenhum usuário cadastrado';
+
+  @override
+  String get userCreated => 'Usuário criado com sucesso';
+
+  @override
+  String get userName => 'Nome';
+
+  @override
+  String get userEmail => 'E-mail';
+
+  @override
+  String get userPhone => 'Telefone';
+
+  @override
+  String get userStatus => 'Status';
+
+  @override
+  String get newUser => 'Novo usuário';
+
+  @override
+  String get userDetailTitle => 'Detalhes do usuário';
 }

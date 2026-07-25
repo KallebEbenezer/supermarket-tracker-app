@@ -61,5 +61,13 @@
   "customerBirthDate": "Data de nascimento",
   "customerStatus": "Status",
   "newCustomer": "Novo cliente",
-  "customerDetailTitle": "Detalhes do cliente"
+  "customerDetailTitle": "Detalhes do cliente",
+  "noUsers": "Nenhum usuário cadastrado",
+  "userCreated": "Usuário criado com sucesso",
+  "userName": "Nome",
+  "userEmail": "E-mail",
+  "userPhone": "Telefone",
+  "userStatus": "Status",
+  "newUser": "Novo usuário",
+  "userDetailTitle": "Detalhes do usuário"
 }

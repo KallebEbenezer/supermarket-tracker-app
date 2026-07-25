@@ -9,6 +9,9 @@ import '../../features/auth/presentation/screens/forgot_password_screen.dart';
 import '../../features/auth/presentation/screens/login_screen.dart';
 import '../../features/auth/presentation/screens/reset_password_screen.dart';
 import '../../features/auth/presentation/screens/signup_screen.dart';
+import '../../features/cash_register/presentation/screens/cash_register_create_screen.dart';
+import '../../features/cash_register/presentation/screens/cash_register_detail_screen.dart';
+import '../../features/cash_register/presentation/screens/cash_register_list_screen.dart';
 import '../../features/dashboard/presentation/screens/dashboard_screen.dart';
 import '../../features/store/presentation/screens/store_create_screen.dart';
 import '../../features/store/presentation/screens/store_detail_screen.dart';
@@ -118,10 +121,17 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           ),
           GoRoute(
             path: '/cash',
-            builder: (context, state) {
-              final l10n = AppLocalizations.of(context)!;
-              return ComingSoonScreen(title: l10n.navCash, icon: AppIcons.cash);
-            },
+            builder: (context, state) => const CashRegisterListScreen(),
+          ),
+          GoRoute(
+            path: '/cash/new',
+            builder: (context, state) => const CashRegisterCreateScreen(),
+          ),
+          GoRoute(
+            path: '/cash/:id',
+            builder: (context, state) => CashRegisterDetailScreen(
+              cashRegisterId: state.pathParameters['id'] ?? '',
+            ),
           ),
           GoRoute(
             path: '/customers',

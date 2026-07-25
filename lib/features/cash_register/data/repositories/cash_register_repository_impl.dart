@@ -20,6 +20,16 @@ class CashRegisterRepositoryImpl implements CashRegisterRepository {
   }
 
   @override
+  Future<List<CashRegisterEntity>> listCashRegisters(String storeId) async {
+    try {
+      final envelope = await _remote.listCashRegisters(storeId);
+      return envelope.requireData();
+    } on Object catch (error) {
+      throw ErrorMapper.map(error);
+    }
+  }
+
+  @override
   Future<CashSessionEntity> openCashSession(
     String cashRegisterId,
     Map<String, dynamic> payload,

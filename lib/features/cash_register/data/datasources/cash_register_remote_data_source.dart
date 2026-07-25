@@ -7,6 +7,9 @@ abstract class CashRegisterRemoteDataSource {
   /// Create a new cash register.
   Future<ApiEnvelope<CashRegisterEntity>> createCashRegister(Map<String, dynamic> payload);
 
+  /// List all cash registers for a given store.
+  Future<ApiEnvelope<List<CashRegisterEntity>>> listCashRegisters(String storeId);
+
   /// Open a new cash session for a given cash register.
   Future<ApiEnvelope<CashSessionEntity>> openCashSession(
     String cashRegisterId,

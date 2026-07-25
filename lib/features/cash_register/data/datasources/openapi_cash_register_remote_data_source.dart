@@ -27,6 +27,17 @@ class OpenApiCashRegisterRemoteDataSource implements CashRegisterRemoteDataSourc
       );
 
   @override
+  Future<ApiEnvelope<List<CashRegisterEntity>>> listCashRegisters(String storeId) =>
+      _client.get(
+        '/api/v1/caixas',
+        queryParameters: {'lojaId': storeId},
+        parser: (data) => ApiEnvelope.fromJson(
+          data as Map<String, dynamic>,
+          (value) => _mapper.fromJsonList(value as List<dynamic>),
+        ),
+      );
+
+  @override
   Future<ApiEnvelope<CashSessionEntity>> openCashSession(
     String cashRegisterId,
     Map<String, dynamic> payload,

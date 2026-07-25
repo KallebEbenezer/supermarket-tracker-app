@@ -19,9 +19,9 @@ class StoreRepositoryImpl implements StoreRepository {
   }
 
   @override
-  Future<List<StoreEntity>> listStores(String companyId) async {
+  Future<List<StoreEntity>> listStores(String companyId, {int page = 0, int size = 20}) async {
     try {
-      final envelope = await _remote.listStores(companyId);
+      final envelope = await _remote.listStores(companyId, page: page, size: size);
       return envelope.requireData();
     } on Object catch (error) {
       throw ErrorMapper.map(error);

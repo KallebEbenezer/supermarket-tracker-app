@@ -24,12 +24,16 @@ class OpenApiStoreRemoteDataSource implements StoreRemoteDataSource {
       );
 
   @override
-  Future<ApiEnvelope<List<StoreEntity>>> listStores(String companyId) => _client.get(
+  Future<ApiEnvelope<List<StoreEntity>>> listStores(String companyId, {int page = 0, int size = 20}) => _client.get(
         '/api/v1/lojas',
-        queryParameters: {'empresaId': companyId},
+        queryParameters: {'empresaId': companyId, 'page': page, 'size': size},
         parser: (data) => ApiEnvelope.fromJson(
           data as Map<String, dynamic>,
-          (value) => _mapper.fromJsonList(value as List<dynamic>),
+          (value) {
+            final paginated = value as Map<String, dynamic>;
+            final items = paginated['data'] as List<dynamic>;
+            return _mapper.fromJsonList(items);
+          },
         ),
       );
 

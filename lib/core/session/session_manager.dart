@@ -75,11 +75,13 @@ class SessionManager {
   static const _kRefresh = 'session.refreshToken';
   static const _kExpires = 'session.expiresAt';
   static const _kUser = 'session.user';
+  static const _kEmpresaId = 'session.empresaId';
 
   final SecureStorage _secureStorage;
   final ValueNotifier<bool> isAuthenticated = ValueNotifier(false);
 
   AuthSession? _session;
+  String? _empresaId;
 
   /// Carrega a sessão persistida, se houver.
   Future<void> restore() async {
@@ -87,6 +89,7 @@ class SessionManager {
     final refresh = await _secureStorage.read(_kRefresh);
     final expires = await _secureStorage.read(_kExpires);
     final userJson = await _secureStorage.read(_kUser);
+    final empresaId = await _secureStorage.read(_kEmpresaId);
     if (access != null && userJson != null) {
       _session = AuthSession(
         accessToken: access,
@@ -96,6 +99,7 @@ class SessionManager {
           Map<String, dynamic>.from(jsonDecode(userJson) as Map),
         ),
       );
+      _empresaId = empresaId;
       isAuthenticated.value = true;
     }
   }
@@ -127,16 +131,25 @@ class SessionManager {
   /// Encerra a sessão (logout) e limpa os dados persistidos.
   Future<void> clear() async {
     _session = null;
+    _empresaId = null;
     await _secureStorage.delete(_kAccess);
     await _secureStorage.delete(_kRefresh);
     await _secureStorage.delete(_kExpires);
     await _secureStorage.delete(_kUser);
+    await _secureStorage.delete(_kEmpresaId);
     isAuthenticated.value = false;
   }
 
   String? get accessToken => _session?.accessToken;
   String? get refreshToken => _session?.refreshToken;
   AuthUser? get currentUser => _session?.user;
+  String? get empresaId => _empresaId;
+
+  /// Define e persiste a empresa selecionada.
+  Future<void> setEmpresaId(String empresaId) async {
+    _empresaId = empresaId;
+    await _secureStorage.write(_kEmpresaId, empresaId);
+  }
 
   /// Cabeçalho `Authorization: Bearer <token>`, ou `null` se não houver sessão.
   String? bearerHeader() {

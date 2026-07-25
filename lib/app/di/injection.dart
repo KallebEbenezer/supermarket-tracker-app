@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
 
 import '../../core/connectivity/connectivity_service.dart';
+import '../../core/cache/cache_service.dart';
 import '../../core/environment/app_environment.dart';
 import '../../core/logging/app_logger.dart';
 import '../../core/network/api_client.dart';
@@ -90,12 +91,14 @@ void configureDependencies(AppEnvironment environment) {
       () => SessionManager(getIt<SecureStorage>()),
     )
     ..registerLazySingleton<ConnectivityService>(ConnectivityService.new)
+    ..registerLazySingleton<CacheService>(CacheService.new)
     ..registerLazySingleton<NetworkRequestMonitor>(NetworkRequestMonitor.new)
     ..registerLazySingleton<Dio>(
       () => NetworkModule.createDio(
         environment: getIt<AppEnvironment>(),
         sessionManager: getIt<SessionManager>(),
         connectivity: getIt<ConnectivityService>(),
+        cache: getIt<CacheService>(),
         logger: getIt<Logger>(),
         monitor: getIt<NetworkRequestMonitor>(),
       ),

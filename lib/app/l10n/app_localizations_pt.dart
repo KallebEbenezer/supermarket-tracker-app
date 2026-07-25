@@ -223,6 +223,97 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get noSales => 'Nenhuma venda cadastrada';
+
+  @override
+  String get drawerLogout => 'Sair';
+
+  @override
+  String get loginForgotPassword => 'Esqueceu a senha?';
+
+  @override
+  String get loginNoAccount => 'Não tem conta?';
+
+  @override
+  String get signupTitle => 'Cadastrar';
+
+  @override
+  String get signupErrorEmpty => 'Preencha todos os campos obrigatórios';
+
+  @override
+  String get signupSubtitle => 'Crie sua conta para continuar';
+
+  @override
+  String get signupName => 'Nome completo';
+
+  @override
+  String get signupPhone => 'Telefone';
+
+  @override
+  String get signupSubmit => 'Cadastrar';
+
+  @override
+  String get signupHasAccount => 'Já tem conta?';
+
+  @override
+  String get forgotTitle => 'Esqueceu a senha';
+
+  @override
+  String get forgotSubtitle =>
+      'Informe seu e-mail para receber o link de redefinição';
+
+  @override
+  String get forgotSubmit => 'Enviar link';
+
+  @override
+  String get forgotSuccess => 'Link enviado! Verifique seu e-mail.';
+
+  @override
+  String get forgotBackToLogin => 'Voltar para o login';
+
+  @override
+  String get resetTitle => 'Redefinir senha';
+
+  @override
+  String get resetSubtitle => 'Informe o token do seu e-mail e a nova senha';
+
+  @override
+  String get resetToken => 'Token';
+
+  @override
+  String get resetSubmit => 'Redefinir senha';
+
+  @override
+  String get resetSuccess => 'Senha redefinida com sucesso!';
+
+  @override
+  String get noCashRegisters => 'Nenhum caixa cadastrado';
+
+  @override
+  String get cashRegisterCreated => 'Caixa criado com sucesso';
+
+  @override
+  String get cashRegisterActions => 'Ações do caixa';
+
+  @override
+  String get cashSessionOpen => 'Abrir sessão';
+
+  @override
+  String get cashSessionClose => 'Fechar sessão';
+
+  @override
+  String get cashSessionOpened => 'Sessão aberta com sucesso';
+
+  @override
+  String get cashSessionClosed => 'Sessão fechada com sucesso';
+
+  @override
+  String get cashOpeningValue => 'Valor de abertura';
+
+  @override
+  String get cashClosingValue => 'Valor de fechamento';
+
+  @override
+  String get cashObservation => 'Observação';
 }
 
 /// The translations for Portuguese, as used in Brazil (`pt_BR`).
@@ -444,4 +535,95 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get noSales => 'Nenhuma venda cadastrada';
+
+  @override
+  String get drawerLogout => 'Sair';
+
+  @override
+  String get loginForgotPassword => 'Esqueceu a senha?';
+
+  @override
+  String get loginNoAccount => 'Não tem conta?';
+
+  @override
+  String get signupTitle => 'Cadastrar';
+
+  @override
+  String get signupErrorEmpty => 'Preencha todos os campos obrigatórios';
+
+  @override
+  String get signupSubtitle => 'Crie sua conta para continuar';
+
+  @override
+  String get signupName => 'Nome completo';
+
+  @override
+  String get signupPhone => 'Telefone';
+
+  @override
+  String get signupSubmit => 'Cadastrar';
+
+  @override
+  String get signupHasAccount => 'Já tem conta?';
+
+  @override
+  String get forgotTitle => 'Esqueceu a senha';
+
+  @override
+  String get forgotSubtitle =>
+      'Informe seu e-mail para receber o link de redefinição';
+
+  @override
+  String get forgotSubmit => 'Enviar link';
+
+  @override
+  String get forgotSuccess => 'Link enviado! Verifique seu e-mail.';
+
+  @override
+  String get forgotBackToLogin => 'Voltar para o login';
+
+  @override
+  String get resetTitle => 'Redefinir senha';
+
+  @override
+  String get resetSubtitle => 'Informe o token do seu e-mail e a nova senha';
+
+  @override
+  String get resetToken => 'Token';
+
+  @override
+  String get resetSubmit => 'Redefinir senha';
+
+  @override
+  String get resetSuccess => 'Senha redefinida com sucesso!';
+
+  @override
+  String get noCashRegisters => 'Nenhum caixa cadastrado';
+
+  @override
+  String get cashRegisterCreated => 'Caixa criado com sucesso';
+
+  @override
+  String get cashRegisterActions => 'Ações do caixa';
+
+  @override
+  String get cashSessionOpen => 'Abrir sessão';
+
+  @override
+  String get cashSessionClose => 'Fechar sessão';
+
+  @override
+  String get cashSessionOpened => 'Sessão aberta com sucesso';
+
+  @override
+  String get cashSessionClosed => 'Sessão fechada com sucesso';
+
+  @override
+  String get cashOpeningValue => 'Valor de abertura';
+
+  @override
+  String get cashClosingValue => 'Valor de fechamento';
+
+  @override
+  String get cashObservation => 'Observação';
 }

@@ -223,4 +223,95 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noSales => 'No sales registered';
+
+  @override
+  String get drawerLogout => 'Sign out';
+
+  @override
+  String get loginForgotPassword => 'Forgot password?';
+
+  @override
+  String get loginNoAccount => 'Don\'t have an account?';
+
+  @override
+  String get signupTitle => 'Sign up';
+
+  @override
+  String get signupErrorEmpty => 'Fill in all required fields';
+
+  @override
+  String get signupSubtitle => 'Create your account to continue';
+
+  @override
+  String get signupName => 'Full name';
+
+  @override
+  String get signupPhone => 'Phone';
+
+  @override
+  String get signupSubmit => 'Sign up';
+
+  @override
+  String get signupHasAccount => 'Already have an account?';
+
+  @override
+  String get forgotTitle => 'Forgot password';
+
+  @override
+  String get forgotSubtitle => 'Enter your email to receive a reset link';
+
+  @override
+  String get forgotSubmit => 'Send link';
+
+  @override
+  String get forgotSuccess => 'Reset link sent! Check your email.';
+
+  @override
+  String get forgotBackToLogin => 'Back to sign in';
+
+  @override
+  String get resetTitle => 'Reset password';
+
+  @override
+  String get resetSubtitle =>
+      'Enter the token from your email and your new password';
+
+  @override
+  String get resetToken => 'Token';
+
+  @override
+  String get resetSubmit => 'Reset password';
+
+  @override
+  String get resetSuccess => 'Password reset successfully!';
+
+  @override
+  String get noCashRegisters => 'No cash registers registered';
+
+  @override
+  String get cashRegisterCreated => 'Cash register created successfully';
+
+  @override
+  String get cashRegisterActions => 'Cash register actions';
+
+  @override
+  String get cashSessionOpen => 'Open session';
+
+  @override
+  String get cashSessionClose => 'Close session';
+
+  @override
+  String get cashSessionOpened => 'Session opened successfully';
+
+  @override
+  String get cashSessionClosed => 'Session closed successfully';
+
+  @override
+  String get cashOpeningValue => 'Opening value';
+
+  @override
+  String get cashClosingValue => 'Closing value';
+
+  @override
+  String get cashObservation => 'Observation';
 }

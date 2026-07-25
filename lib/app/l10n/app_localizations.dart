@@ -530,6 +530,186 @@ abstract class AppLocalizations {
   /// In pt_BR, this message translates to:
   /// **'Nenhuma venda cadastrada'**
   String get noSales;
+
+  /// No description provided for @drawerLogout.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Sair'**
+  String get drawerLogout;
+
+  /// No description provided for @loginForgotPassword.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Esqueceu a senha?'**
+  String get loginForgotPassword;
+
+  /// No description provided for @loginNoAccount.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Não tem conta?'**
+  String get loginNoAccount;
+
+  /// No description provided for @signupTitle.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Cadastrar'**
+  String get signupTitle;
+
+  /// No description provided for @signupErrorEmpty.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Preencha todos os campos obrigatórios'**
+  String get signupErrorEmpty;
+
+  /// No description provided for @signupSubtitle.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Crie sua conta para continuar'**
+  String get signupSubtitle;
+
+  /// No description provided for @signupName.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Nome completo'**
+  String get signupName;
+
+  /// No description provided for @signupPhone.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Telefone'**
+  String get signupPhone;
+
+  /// No description provided for @signupSubmit.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Cadastrar'**
+  String get signupSubmit;
+
+  /// No description provided for @signupHasAccount.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Já tem conta?'**
+  String get signupHasAccount;
+
+  /// No description provided for @forgotTitle.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Esqueceu a senha'**
+  String get forgotTitle;
+
+  /// No description provided for @forgotSubtitle.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Informe seu e-mail para receber o link de redefinição'**
+  String get forgotSubtitle;
+
+  /// No description provided for @forgotSubmit.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Enviar link'**
+  String get forgotSubmit;
+
+  /// No description provided for @forgotSuccess.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Link enviado! Verifique seu e-mail.'**
+  String get forgotSuccess;
+
+  /// No description provided for @forgotBackToLogin.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Voltar para o login'**
+  String get forgotBackToLogin;
+
+  /// No description provided for @resetTitle.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Redefinir senha'**
+  String get resetTitle;
+
+  /// No description provided for @resetSubtitle.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Informe o token do seu e-mail e a nova senha'**
+  String get resetSubtitle;
+
+  /// No description provided for @resetToken.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Token'**
+  String get resetToken;
+
+  /// No description provided for @resetSubmit.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Redefinir senha'**
+  String get resetSubmit;
+
+  /// No description provided for @resetSuccess.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Senha redefinida com sucesso!'**
+  String get resetSuccess;
+
+  /// No description provided for @noCashRegisters.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Nenhum caixa cadastrado'**
+  String get noCashRegisters;
+
+  /// No description provided for @cashRegisterCreated.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Caixa criado com sucesso'**
+  String get cashRegisterCreated;
+
+  /// No description provided for @cashRegisterActions.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Ações do caixa'**
+  String get cashRegisterActions;
+
+  /// No description provided for @cashSessionOpen.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Abrir sessão'**
+  String get cashSessionOpen;
+
+  /// No description provided for @cashSessionClose.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Fechar sessão'**
+  String get cashSessionClose;
+
+  /// No description provided for @cashSessionOpened.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Sessão aberta com sucesso'**
+  String get cashSessionOpened;
+
+  /// No description provided for @cashSessionClosed.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Sessão fechada com sucesso'**
+  String get cashSessionClosed;
+
+  /// No description provided for @cashOpeningValue.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Valor de abertura'**
+  String get cashOpeningValue;
+
+  /// No description provided for @cashClosingValue.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Valor de fechamento'**
+  String get cashClosingValue;
+
+  /// No description provided for @cashObservation.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Observação'**
+  String get cashObservation;
 }
 
 class _AppLocalizationsDelegate

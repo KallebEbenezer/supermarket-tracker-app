@@ -4,6 +4,9 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../app/l10n/app_localizations.dart';
 import '../../../../core/session/session_manager.dart';
+import '../../../../design_system/tokens/app_icons.dart';
+import '../../../../design_system/tokens/app_layout.dart';
+import '../../../_shared/presentation/providers/repository_providers.dart';
 import '../../../auth/presentation/providers/auth_providers.dart';
 import '../nav/nav_destinations.dart';
 

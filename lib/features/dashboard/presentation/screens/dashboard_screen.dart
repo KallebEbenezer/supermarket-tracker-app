@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 
 import '../../../../app/l10n/app_localizations.dart';
 import '../../../../design_system/design_system.dart';
-import '../../../_shared/presentation/constants.dart';
+import '../../../_shared/presentation/providers/company_provider.dart';
 import '../../../_shared/presentation/widgets/async_screen.dart';
 import '../../domain/entities/dashboard_entity.dart';
 import '../providers/dashboard_provider.dart';
@@ -19,11 +19,12 @@ class DashboardScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
-    final dashboard = ref.watch(dashboardProvider(kDefaultCompanyId));
+    final empresaId = ref.watch(currentCompanyIdProvider) ?? '';
+    final dashboard = ref.watch(dashboardProvider(empresaId));
 
     return AsyncScreen<DashboardEntity>(
       state: dashboard,
-      onRetry: () => ref.invalidate(dashboardProvider(kDefaultCompanyId)),
+      onRetry: () => ref.invalidate(dashboardProvider(empresaId)),
       dataBuilder: (context, data) => ListView(
         padding: const EdgeInsets.all(AppSpacing.md),
         children: [

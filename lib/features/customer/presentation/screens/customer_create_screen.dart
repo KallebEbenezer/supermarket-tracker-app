@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../app/l10n/app_localizations.dart';
 import '../../../../core/errors/app_exception.dart';
 import '../../../../design_system/design_system.dart';
-import '../../../_shared/presentation/constants.dart';
+import '../../../_shared/presentation/providers/company_provider.dart';
 import '../providers/customer_providers.dart';
 
 class CustomerCreateScreen extends ConsumerStatefulWidget {
@@ -49,7 +49,7 @@ class _CustomerCreateScreenState extends ConsumerState<CustomerCreateScreen> {
     try {
       final created =
           await ref.read(customerCreateProvider.notifier).create({
-        'empresaId': kDefaultCompanyId,
+        'empresaId': ref.read(currentCompanyIdProvider) ?? '',
         'nome': nome,
         'cpfCnpj': _cpfCnpjController.text.trim(),
         'email': _emailController.text.trim(),

@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../app/l10n/app_localizations.dart';
 import '../../../../design_system/design_system.dart';
-import '../../../_shared/presentation/constants.dart';
+import '../../../_shared/presentation/providers/company_provider.dart';
 import '../../../_shared/presentation/widgets/async_screen.dart';
 import '../../domain/entities/product_entity.dart';
 import '../providers/product_providers.dart';
@@ -15,16 +15,17 @@ class ProductListScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
-    final products = ref.watch(productListProvider(kDefaultCompanyId));
+    final empresaId = ref.watch(currentCompanyIdProvider) ?? '';
+    final products = ref.watch(productListProvider(empresaId));
 
     return AsyncScreen<List<ProductEntity>>(
       state: products,
       isEmpty: (list) => list.isEmpty,
       emptyMessage: l10n.noProducts,
-      onRetry: () => ref.invalidate(productListProvider(kDefaultCompanyId)),
+      onRetry: () => ref.invalidate(productListProvider(empresaId)),
       dataBuilder: (context, list) => RefreshIndicator(
         onRefresh: () async =>
-            ref.invalidate(productListProvider(kDefaultCompanyId)),
+            ref.invalidate(productListProvider(empresaId)),
         child: ListView.separated(
           padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
           itemCount: list.length,

@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../app/l10n/app_localizations.dart';
 import '../../../../design_system/design_system.dart';
-import '../../../_shared/presentation/constants.dart';
+import '../../../_shared/presentation/providers/company_provider.dart';
 import '../../../_shared/presentation/widgets/async_screen.dart';
 import '../../domain/entities/stock_movement_entity.dart';
 import '../providers/stock_movement_providers.dart';
@@ -14,18 +14,19 @@ class StockMovementListScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
+    final empresaId = ref.watch(currentCompanyIdProvider) ?? '';
     final movements =
-        ref.watch(stockMovementListProvider(kDefaultCompanyId));
+        ref.watch(stockMovementListProvider(empresaId));
 
     return AsyncScreen<List<StockMovementEntity>>(
       state: movements,
       isEmpty: (list) => list.isEmpty,
       emptyMessage: l10n.noStockMovements,
       onRetry: () =>
-          ref.invalidate(stockMovementListProvider(kDefaultCompanyId)),
+          ref.invalidate(stockMovementListProvider(empresaId)),
       dataBuilder: (context, list) => RefreshIndicator(
         onRefresh: () async =>
-            ref.invalidate(stockMovementListProvider(kDefaultCompanyId)),
+            ref.invalidate(stockMovementListProvider(empresaId)),
         child: ListView.separated(
           padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
           itemCount: list.length,

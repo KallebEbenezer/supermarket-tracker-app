@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../app/l10n/app_localizations.dart';
 import '../../../../core/errors/app_exception.dart';
 import '../../../../design_system/design_system.dart';
-import '../../../_shared/presentation/constants.dart';
+import '../../../_shared/presentation/providers/company_provider.dart';
 import '../providers/store_providers.dart';
 
 /// Formulário de criação de loja (rota `/stores/new`).
@@ -19,7 +19,7 @@ class StoreCreateScreen extends ConsumerStatefulWidget {
 class _StoreCreateScreenState extends ConsumerState<StoreCreateScreen> {
   final _codigoController = TextEditingController();
   final _nomeController = TextEditingController();
-  final _empresaIdController = TextEditingController(text: kDefaultCompanyId);
+  final _empresaIdController = TextEditingController();
   final _statusController = TextEditingController();
 
   @override
@@ -49,7 +49,7 @@ class _StoreCreateScreenState extends ConsumerState<StoreCreateScreen> {
       final created = await ref.read(storeCreateProvider.notifier).create({
         'codigo': codigo,
         'nome': nome,
-        'empresaId': _empresaIdController.text.trim(),
+        'empresaId': ref.read(currentCompanyIdProvider) ?? '',
         'status': _statusController.text.trim(),
       });
       if (mounted) {

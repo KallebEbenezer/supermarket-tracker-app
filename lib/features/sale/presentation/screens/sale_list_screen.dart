@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../app/l10n/app_localizations.dart';
 import '../../../../design_system/design_system.dart';
-import '../../../_shared/presentation/constants.dart';
+import '../../../_shared/presentation/providers/company_provider.dart';
 import '../../../_shared/presentation/widgets/async_screen.dart';
 import '../../domain/entities/sale_entity.dart';
 import '../providers/sale_providers.dart';
@@ -14,16 +14,17 @@ class SaleListScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
-    final sales = ref.watch(saleListProvider(kDefaultCompanyId));
+    final empresaId = ref.watch(currentCompanyIdProvider) ?? '';
+    final sales = ref.watch(saleListProvider(empresaId));
 
     return AsyncScreen<List<SaleEntity>>(
       state: sales,
       isEmpty: (list) => list.isEmpty,
       emptyMessage: l10n.noSales,
-      onRetry: () => ref.invalidate(saleListProvider(kDefaultCompanyId)),
+      onRetry: () => ref.invalidate(saleListProvider(empresaId)),
       dataBuilder: (context, list) => RefreshIndicator(
         onRefresh: () async =>
-            ref.invalidate(saleListProvider(kDefaultCompanyId)),
+            ref.invalidate(saleListProvider(empresaId)),
         child: ListView.separated(
           padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
           itemCount: list.length,

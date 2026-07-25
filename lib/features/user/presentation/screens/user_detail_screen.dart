@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../app/l10n/app_localizations.dart';
 import '../../../../design_system/design_system.dart';
-import '../../../_shared/presentation/constants.dart';
+import '../../../_shared/presentation/providers/company_provider.dart';
 import '../../../_shared/presentation/widgets/async_screen.dart';
 import '../../domain/entities/user_entity.dart';
 import '../providers/user_providers.dart';
@@ -16,11 +16,12 @@ class UserDetailScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
-    final users = ref.watch(userListProvider(kDefaultCompanyId));
+    final empresaId = ref.watch(currentCompanyIdProvider) ?? '';
+    final users = ref.watch(userListProvider(empresaId));
 
     return AsyncScreen<List<UserEntity>>(
       state: users,
-      onRetry: () => ref.invalidate(userListProvider(kDefaultCompanyId)),
+      onRetry: () => ref.invalidate(userListProvider(empresaId)),
       dataBuilder: (context, list) {
         final user = list.where((u) => u.id == userId).firstOrNull;
         if (user == null) {

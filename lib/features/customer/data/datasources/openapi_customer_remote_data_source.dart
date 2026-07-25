@@ -15,6 +15,17 @@ class OpenApiCustomerRemoteDataSource implements CustomerRemoteDataSource {
   final CustomerMapper _mapper;
 
   @override
+  Future<ApiEnvelope<List<CustomerEntity>>> listCustomers(String companyId) =>
+      _client.get(
+        '/api/v1/clientes',
+        queryParameters: {'empresaId': companyId},
+        parser: (data) => ApiEnvelope.fromJson(
+          data as Map<String, dynamic>,
+          (value) => _mapper.fromJsonList(value as List<dynamic>),
+        ),
+      );
+
+  @override
   Future<ApiEnvelope<CustomerEntity>> createCustomer(Map<String, dynamic> payload) => _client.post(
         '/api/v1/clientes',
         data: payload,

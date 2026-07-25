@@ -410,6 +410,66 @@ abstract class AppLocalizations {
   /// In pt_BR, this message translates to:
   /// **'Detalhes do produto'**
   String get productDetailTitle;
+
+  /// No description provided for @noCustomers.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Nenhum cliente cadastrado'**
+  String get noCustomers;
+
+  /// No description provided for @customerCreated.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Cliente criado com sucesso'**
+  String get customerCreated;
+
+  /// No description provided for @customerName.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Nome'**
+  String get customerName;
+
+  /// No description provided for @customerCpfCnpj.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'CPF/CNPJ'**
+  String get customerCpfCnpj;
+
+  /// No description provided for @customerEmail.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'E-mail'**
+  String get customerEmail;
+
+  /// No description provided for @customerPhone.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Telefone'**
+  String get customerPhone;
+
+  /// No description provided for @customerBirthDate.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Data de nascimento'**
+  String get customerBirthDate;
+
+  /// No description provided for @customerStatus.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Status'**
+  String get customerStatus;
+
+  /// No description provided for @newCustomer.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Novo cliente'**
+  String get newCustomer;
+
+  /// No description provided for @customerDetailTitle.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Detalhes do cliente'**
+  String get customerDetailTitle;
 }
 
 class _AppLocalizationsDelegate

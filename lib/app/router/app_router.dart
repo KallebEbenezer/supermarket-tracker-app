@@ -16,6 +16,9 @@ import '../../features/store/presentation/screens/store_list_screen.dart';
 import '../../features/product/presentation/screens/product_list_screen.dart';
 import '../../features/product/presentation/screens/product_create_screen.dart';
 import '../../features/product/presentation/screens/product_detail_screen.dart';
+import '../../features/customer/presentation/screens/customer_list_screen.dart';
+import '../../features/customer/presentation/screens/customer_detail_screen.dart';
+import '../../features/customer/presentation/screens/customer_create_screen.dart';
 import '../l10n/app_localizations.dart';
 
 /// Rotas públicas de autenticação (acessíveis sem sessão).
@@ -123,10 +126,17 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           ),
           GoRoute(
             path: '/customers',
-            builder: (context, state) {
-              final l10n = AppLocalizations.of(context)!;
-              return ComingSoonScreen(title: l10n.navCustomers, icon: AppIcons.customers);
-            },
+            builder: (context, state) => const CustomerListScreen(),
+          ),
+          GoRoute(
+            path: '/customers/new',
+            builder: (context, state) => const CustomerCreateScreen(),
+          ),
+          GoRoute(
+            path: '/customers/:id',
+            builder: (context, state) => CustomerDetailScreen(
+              customerId: state.pathParameters['id'] ?? '',
+            ),
           ),
           GoRoute(
             path: '/users',

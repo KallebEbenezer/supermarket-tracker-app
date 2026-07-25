@@ -163,6 +163,36 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get productDetailTitle => 'Detalhes do produto';
+
+  @override
+  String get noCustomers => 'Nenhum cliente cadastrado';
+
+  @override
+  String get customerCreated => 'Cliente criado com sucesso';
+
+  @override
+  String get customerName => 'Nome';
+
+  @override
+  String get customerCpfCnpj => 'CPF/CNPJ';
+
+  @override
+  String get customerEmail => 'E-mail';
+
+  @override
+  String get customerPhone => 'Telefone';
+
+  @override
+  String get customerBirthDate => 'Data de nascimento';
+
+  @override
+  String get customerStatus => 'Status';
+
+  @override
+  String get newCustomer => 'Novo cliente';
+
+  @override
+  String get customerDetailTitle => 'Detalhes do cliente';
 }
 
 /// The translations for Portuguese, as used in Brazil (`pt_BR`).
@@ -324,4 +354,34 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get productDetailTitle => 'Detalhes do produto';
+
+  @override
+  String get noCustomers => 'Nenhum cliente cadastrado';
+
+  @override
+  String get customerCreated => 'Cliente criado com sucesso';
+
+  @override
+  String get customerName => 'Nome';
+
+  @override
+  String get customerCpfCnpj => 'CPF/CNPJ';
+
+  @override
+  String get customerEmail => 'E-mail';
+
+  @override
+  String get customerPhone => 'Telefone';
+
+  @override
+  String get customerBirthDate => 'Data de nascimento';
+
+  @override
+  String get customerStatus => 'Status';
+
+  @override
+  String get newCustomer => 'Novo cliente';
+
+  @override
+  String get customerDetailTitle => 'Detalhes do cliente';
 }

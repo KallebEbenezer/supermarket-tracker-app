@@ -9,6 +9,16 @@ class CustomerRepositoryImpl implements CustomerRepository {
   final CustomerRemoteDataSource _remote;
 
   @override
+  Future<List<CustomerEntity>> listCustomers(String companyId) async {
+    try {
+      final envelope = await _remote.listCustomers(companyId);
+      return envelope.requireData();
+    } on Object catch (error) {
+      throw ErrorMapper.map(error);
+    }
+  }
+
+  @override
   Future<CustomerEntity> createCustomer(Map<String, dynamic> payload) async {
     try {
       final envelope = await _remote.createCustomer(payload);

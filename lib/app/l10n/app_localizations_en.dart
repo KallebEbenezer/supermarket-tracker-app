@@ -163,4 +163,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get productDetailTitle => 'Product details';
+
+  @override
+  String get noCustomers => 'No customers registered';
+
+  @override
+  String get customerCreated => 'Customer created successfully';
+
+  @override
+  String get customerName => 'Name';
+
+  @override
+  String get customerCpfCnpj => 'CPF/CNPJ';
+
+  @override
+  String get customerEmail => 'Email';
+
+  @override
+  String get customerPhone => 'Phone';
+
+  @override
+  String get customerBirthDate => 'Birth date';
+
+  @override
+  String get customerStatus => 'Status';
+
+  @override
+  String get newCustomer => 'New customer';
+
+  @override
+  String get customerDetailTitle => 'Customer details';
 }

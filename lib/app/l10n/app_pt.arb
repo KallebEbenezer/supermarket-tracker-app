@@ -51,5 +51,15 @@
   "productCurrentStock": "Estoque atual",
   "productStatus": "Status",
   "newProduct": "Novo produto",
-  "productDetailTitle": "Detalhes do produto"
+  "productDetailTitle": "Detalhes do produto",
+  "noCustomers": "Nenhum cliente cadastrado",
+  "customerCreated": "Cliente criado com sucesso",
+  "customerName": "Nome",
+  "customerCpfCnpj": "CPF/CNPJ",
+  "customerEmail": "E-mail",
+  "customerPhone": "Telefone",
+  "customerBirthDate": "Data de nascimento",
+  "customerStatus": "Status",
+  "newCustomer": "Novo cliente",
+  "customerDetailTitle": "Detalhes do cliente"
 }

@@ -15,6 +15,25 @@ class OpenApiSaleRemoteDataSource implements SaleRemoteDataSource {
   final SaleMapper _mapper;
 
   @override
+  Future<ApiEnvelope<List<SaleEntity>>> listSales(
+    String companyId, {
+    String? storeId,
+    int? limit,
+  }) =>
+      _client.get(
+        '/api/v1/vendas',
+        queryParameters: {
+          'empresaId': companyId,
+          if (storeId != null) 'lojaId': storeId,
+          if (limit != null) 'limite': limit,
+        },
+        parser: (data) => ApiEnvelope.fromJson(
+          data as Map<String, dynamic>,
+          (value) => _mapper.fromJsonList(value as List<dynamic>),
+        ),
+      );
+
+  @override
   Future<ApiEnvelope<SaleEntity>> finalizeSale(Map<String, dynamic> payload) =>
       _client.post(
         '/api/v1/vendas/finalizar',

@@ -9,6 +9,21 @@ class SaleRepositoryImpl implements SaleRepository {
   final SaleRemoteDataSource _remote;
 
   @override
+  Future<List<SaleEntity>> listSales(
+    String companyId, {
+    String? storeId,
+    int? limit,
+  }) async {
+    try {
+      final envelope =
+          await _remote.listSales(companyId, storeId: storeId, limit: limit);
+      return envelope.requireData();
+    } on Object catch (error) {
+      throw ErrorMapper.map(error);
+    }
+  }
+
+  @override
   Future<SaleEntity> finalizeSale(Map<String, dynamic> payload) async {
     try {
       final envelope = await _remote.finalizeSale(payload);

@@ -524,6 +524,12 @@ abstract class AppLocalizations {
   /// In pt_BR, this message translates to:
   /// **'Nenhuma movimentação de estoque cadastrada'**
   String get noStockMovements;
+
+  /// No description provided for @noSales.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Nenhuma venda cadastrada'**
+  String get noSales;
 }
 
 class _AppLocalizationsDelegate

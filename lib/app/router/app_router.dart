@@ -23,6 +23,7 @@ import '../../features/user/presentation/screens/user_list_screen.dart';
 import '../../features/user/presentation/screens/user_detail_screen.dart';
 import '../../features/user/presentation/screens/user_create_screen.dart';
 import '../../features/stock_movement/presentation/screens/stock_movement_list_screen.dart';
+import '../../features/sale/presentation/screens/sale_list_screen.dart';
 import '../l10n/app_localizations.dart';
 
 /// Rotas públicas de autenticação (acessíveis sem sessão).
@@ -109,10 +110,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           ),
           GoRoute(
             path: '/sales',
-            builder: (context, state) {
-              final l10n = AppLocalizations.of(context)!;
-              return ComingSoonScreen(title: l10n.navSales, icon: AppIcons.sales);
-            },
+            builder: (context, state) => const SaleListScreen(),
           ),
           GoRoute(
             path: '/stock',

@@ -220,4 +220,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noStockMovements => 'No stock movements registered';
+
+  @override
+  String get noSales => 'No sales registered';
 }

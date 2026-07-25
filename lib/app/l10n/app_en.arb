@@ -70,5 +70,6 @@
   "userStatus": "Status",
   "newUser": "New user",
   "userDetailTitle": "User details",
-  "noStockMovements": "No stock movements registered"
+  "noStockMovements": "No stock movements registered",
+  "noSales": "No sales registered"
 }

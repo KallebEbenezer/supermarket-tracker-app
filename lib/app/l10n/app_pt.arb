@@ -70,5 +70,6 @@
   "userStatus": "Status",
   "newUser": "Novo usuário",
   "userDetailTitle": "Detalhes do usuário",
-  "noStockMovements": "Nenhuma movimentação de estoque cadastrada"
+  "noStockMovements": "Nenhuma movimentação de estoque cadastrada",
+  "noSales": "Nenhuma venda cadastrada"
 }

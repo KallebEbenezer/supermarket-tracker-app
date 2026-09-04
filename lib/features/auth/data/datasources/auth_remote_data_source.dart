@@ -8,4 +8,5 @@ abstract interface class AuthRemoteDataSource {
   Future<ApiEnvelope<AuthUser>> me();
   Future<ApiEnvelope<void>> solicitarReset(Map<String, dynamic> payload);
   Future<ApiEnvelope<void>> redefinirSenha(Map<String, dynamic> payload);
+  Future<List<Map<String, dynamic>>> listEmpresas(String userId);
 }

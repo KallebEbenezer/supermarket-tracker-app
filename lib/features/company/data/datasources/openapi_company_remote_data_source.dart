@@ -23,4 +23,16 @@ class OpenApiCompanyRemoteDataSource implements CompanyRemoteDataSource {
           (value) => _mapper.fromJson(value as Map<String, dynamic>),
         ),
       );
+
+  @override
+  Future<ApiEnvelope<List<CompanyEntity>>> listCompanies(String usuarioId) => _client.get(
+        '/api/v1/empresas',
+        queryParameters: {'usuarioId': usuarioId},
+        parser: (data) => ApiEnvelope.fromJson(
+          data as Map<String, dynamic>,
+          (value) => (value as List<dynamic>)
+              .map((e) => _mapper.fromJson(e as Map<String, dynamic>))
+              .toList(),
+        ),
+      );
 }

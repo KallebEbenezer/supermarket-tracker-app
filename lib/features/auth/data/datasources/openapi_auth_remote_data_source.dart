@@ -60,4 +60,17 @@ class OpenApiAuthRemoteDataSource implements AuthRemoteDataSource {
           (_) {},
         ),
       );
+
+  @override
+  Future<List<Map<String, dynamic>>> listEmpresas(String userId) async {
+    final envelope = await _client.get(
+      '/api/v1/empresas',
+      queryParameters: {'usuarioId': userId},
+      parser: (data) => ApiEnvelope.fromJson(
+        data as Map<String, dynamic>,
+        (value) => (value as List<dynamic>).cast<Map<String, dynamic>>(),
+      ),
+    );
+    return envelope.requireData();
+  }
 }

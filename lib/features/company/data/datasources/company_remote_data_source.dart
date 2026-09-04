@@ -5,4 +5,7 @@ import '../../domain/entities/company_entity.dart';
 abstract class CompanyRemoteDataSource {
   /// Create a new company.
   Future<ApiEnvelope<CompanyEntity>> createCompany(Map<String, dynamic> payload);
+
+  /// List companies for a user.
+  Future<ApiEnvelope<List<CompanyEntity>>> listCompanies(String usuarioId);
 }

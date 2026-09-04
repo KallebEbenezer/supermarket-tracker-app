@@ -17,4 +17,14 @@ class CompanyRepositoryImpl implements CompanyRepository {
       throw ErrorMapper.map(error);
     }
   }
+
+  @override
+  Future<List<CompanyEntity>> listCompanies(String usuarioId) async {
+    try {
+      final envelope = await _remote.listCompanies(usuarioId);
+      return envelope.requireData();
+    } on Object catch (error) {
+      throw ErrorMapper.map(error);
+    }
+  }
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -9,6 +10,8 @@ import '../../features/auth/presentation/screens/forgot_password_screen.dart';
 import '../../features/auth/presentation/screens/login_screen.dart';
 import '../../features/auth/presentation/screens/reset_password_screen.dart';
 import '../../features/auth/presentation/screens/signup_screen.dart';
+import '../../features/cash_register/presentation/screens/bank_account_form_screen.dart';
+import '../../features/cash_register/presentation/screens/bank_account_list_screen.dart';
 import '../../features/cash_register/presentation/screens/cash_register_create_screen.dart';
 import '../../features/cash_register/presentation/screens/cash_register_detail_screen.dart';
 import '../../features/cash_register/presentation/screens/cash_register_list_screen.dart';
@@ -19,6 +22,8 @@ import '../../features/store/presentation/screens/store_list_screen.dart';
 import '../../features/product/presentation/screens/product_list_screen.dart';
 import '../../features/product/presentation/screens/product_create_screen.dart';
 import '../../features/product/presentation/screens/product_detail_screen.dart';
+import '../../features/product/presentation/screens/barcode_scanner_screen.dart';
+import '../../features/product/presentation/screens/product_photo_capture_screen.dart';
 import '../../features/customer/presentation/screens/customer_list_screen.dart';
 import '../../features/customer/presentation/screens/customer_detail_screen.dart';
 import '../../features/customer/presentation/screens/customer_create_screen.dart';
@@ -26,8 +31,37 @@ import '../../features/user/presentation/screens/user_list_screen.dart';
 import '../../features/user/presentation/screens/user_detail_screen.dart';
 import '../../features/user/presentation/screens/user_create_screen.dart';
 import '../../features/stock_movement/presentation/screens/stock_movement_list_screen.dart';
+import '../../features/stock_movement/presentation/screens/stock_movement_create_screen.dart';
 import '../../features/sale/presentation/screens/sale_list_screen.dart';
+import '../../features/sale/presentation/screens/sale_scan_screen.dart';
+import '../../features/sale/presentation/screens/sale_summary_screen.dart';
+import '../../features/sale/presentation/screens/sale_pix_screen.dart';
+import '../../features/sale/presentation/screens/payment_method_screen.dart';
+import '../../features/sale/presentation/screens/payment_pix_screen.dart';
+import '../../features/sale/presentation/screens/payment_card_screen.dart';
+import '../../features/sale/presentation/screens/payment_cash_screen.dart';
+import '../../features/sale/presentation/screens/sale_confirmation_screen.dart';
+import '../../features/company/presentation/screens/company_create_screen.dart';
+import '../../features/company/presentation/screens/company_list_screen.dart';
 import '../l10n/app_localizations.dart';
+
+/// Combina [ValueNotifier]s em um único [Listenable] para o router.
+class _CombinedNotifier extends ChangeNotifier {
+  _CombinedNotifier(this._notifiers) {
+    for (final n in _notifiers) {
+      n.addListener(_onChanged);
+    }
+  }
+  final List<ValueNotifier<bool>> _notifiers;
+  void _onChanged() => notifyListeners();
+  @override
+  void dispose() {
+    for (final n in _notifiers) {
+      n.removeListener(_onChanged);
+    }
+    super.dispose();
+  }
+}
 
 /// Rotas públicas de autenticação (acessíveis sem sessão).
 const _publicRoutes = {
@@ -49,13 +83,28 @@ final appRouterProvider = Provider<GoRouter>((ref) {
 
   return GoRouter(
     initialLocation: '/dashboard',
-    refreshListenable: sessionManager.isAuthenticated,
+    refreshListenable: _CombinedNotifier([
+      sessionManager.isAuthenticated,
+      sessionManager.empresaIdChanged,
+      sessionManager.lojaChanged,
+    ]),
     redirect: (context, state) {
       final authenticated = sessionManager.isAuthenticated.value;
+      final empresaId = sessionManager.empresaId;
+      final lojaId = sessionManager.lojaId;
       final location = state.matchedLocation;
       final isPublic = _publicRoutes.contains(location);
+
       if (!authenticated && !isPublic) return '/login';
       if (authenticated && isPublic) return '/dashboard';
+      if (authenticated && empresaId == null && location != '/company/new') {
+        return '/company/new';
+      }
+      if (authenticated && empresaId != null && lojaId == null &&
+          location != '/stores' && location != '/stores/new' &&
+          !location.startsWith('/stores/')) {
+        return '/stores';
+      }
       return null;
     },
     routes: [
@@ -106,14 +155,71 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             builder: (context, state) => const ProductCreateScreen(),
           ),
           GoRoute(
+            path: '/products/new/scan-barcode',
+            builder: (context, state) => const BarcodeScannerScreen(),
+          ),
+          GoRoute(
+            path: '/products/new/photo',
+            builder: (context, state) => const ProductPhotoCaptureScreen(),
+          ),
+          GoRoute(
             path: '/products/:id',
             builder: (context, state) => ProductDetailScreen(
               productId: state.pathParameters['id'] ?? '',
             ),
           ),
           GoRoute(
+            path: '/products/:id/edit',
+            builder: (context, state) => ProductCreateScreen(
+              productId: state.pathParameters['id'] ?? '',
+              editing: true,
+            ),
+          ),
+          GoRoute(
             path: '/sales',
             builder: (context, state) => const SaleListScreen(),
+            routes: [
+              GoRoute(
+                path: 'scan',
+                builder: (context, state) => const SaleScanScreen(),
+              ),
+              GoRoute(
+                path: 'summary',
+                builder: (context, state) => const SaleSummaryScreen(),
+                routes: [
+                  GoRoute(
+                    path: 'payment-method',
+                    builder: (context, state) => const PaymentMethodScreen(),
+                  ),
+                  GoRoute(
+                    path: 'payment-pix',
+                    builder: (context, state) => const PaymentPixScreen(),
+                  ),
+                  GoRoute(
+                    path: 'payment-card',
+                    builder: (context, state) => const PaymentCardScreen(),
+                  ),
+                  GoRoute(
+                    path: 'payment-cash',
+                    builder: (context, state) => const PaymentCashScreen(),
+                  ),
+                ],
+              ),
+              GoRoute(
+                path: 'pix',
+                builder: (context, state) {
+                  final sale = state.extra as dynamic;
+                  return SalePixScreen(sale: sale);
+                },
+              ),
+              GoRoute(
+                path: 'confirmation',
+                builder: (context, state) {
+                  final sale = state.extra as dynamic;
+                  return SaleConfirmationScreen(sale: sale);
+                },
+              ),
+            ],
           ),
           GoRoute(
             path: '/stock',
@@ -131,6 +237,25 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             path: '/cash/:id',
             builder: (context, state) => CashRegisterDetailScreen(
               cashRegisterId: state.pathParameters['id'] ?? '',
+            ),
+          ),
+          GoRoute(
+            path: '/cash/:id/link-bank',
+            builder: (context, state) => const BankAccountFormScreen(),
+          ),
+          GoRoute(
+            path: '/cash/bank-accounts',
+            builder: (context, state) => const BankAccountListScreen(),
+          ),
+          GoRoute(
+            path: '/cash/bank-accounts/new',
+            builder: (context, state) => const BankAccountFormScreen(),
+          ),
+          GoRoute(
+            path: '/cash/bank-accounts/:id/edit',
+            builder: (context, state) => BankAccountFormScreen(
+              accountId: state.pathParameters['id'] ?? '',
+              editing: true,
             ),
           ),
           GoRoute(
@@ -163,10 +288,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           ),
           GoRoute(
             path: '/company',
-            builder: (context, state) {
-              final l10n = AppLocalizations.of(context)!;
-              return ComingSoonScreen(title: l10n.navCompany, icon: AppIcons.business);
-            },
+            builder: (context, state) => const CompanyListScreen(),
+          ),
+          GoRoute(
+            path: '/company/new',
+            builder: (context, state) => const CompanyCreateScreen(),
           ),
         ],
       ),

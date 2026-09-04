@@ -29,6 +29,8 @@ class AppShellScaffold extends ConsumerWidget {
     final active = destinationForLocation(state.matchedLocation);
     final primaries = primaryDestinations;
     final user = ref.watch(currentUserProvider);
+    final lojaId = ref.watch(sessionManagerProvider).lojaId;
+    final hasLoja = lojaId != null;
 
     return Scaffold(
       appBar: AppBar(
@@ -70,17 +72,20 @@ class AppShellScaffold extends ConsumerWidget {
       ),
       body: child,
       floatingActionButton: active?.fab?.call(context),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _activePrimaryIndex(primaries, active),
-        destinations: [
-          for (final d in primaries)
-            NavigationDestination(
-              icon: Icon(d.icon),
-              label: d.label(l10n),
-            ),
-        ],
-        onDestinationSelected: (index) => context.go(primaries[index].route),
-      ),
+      bottomNavigationBar: hasLoja
+          ? NavigationBar(
+              selectedIndex: _activePrimaryIndex(primaries, active),
+              destinations: [
+                for (final d in primaries)
+                  NavigationDestination(
+                    icon: Icon(d.icon),
+                    label: d.label(l10n),
+                  ),
+              ],
+              onDestinationSelected: (index) =>
+                  context.go(primaries[index].route),
+            )
+          : null,
     );
   }
 

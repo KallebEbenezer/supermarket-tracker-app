@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../../../core/session/session_manager.dart';
+import '../../../cash_register/domain/repositories/bank_account_repository.dart';
 import '../../../cash_register/domain/repositories/cash_register_repository.dart';
 import '../../../company/domain/repositories/company_repository.dart';
 import '../../../customer/domain/repositories/customer_repository.dart';
@@ -50,6 +51,10 @@ final userRepositoryProvider = Provider<UserRepository>(
 
 final cashRegisterRepositoryProvider = Provider<CashRegisterRepository>(
   (ref) => getItInstance<CashRegisterRepository>(),
+);
+
+final bankAccountRepositoryProvider = Provider<BankAccountRepository>(
+  (ref) => getItInstance<BankAccountRepository>(),
 );
 
 final stockMovementRepositoryProvider = Provider<StockMovementRepository>(

@@ -13,10 +13,15 @@ import '../../core/network/network_request_monitor.dart';
 import '../../core/session/session_manager.dart';
 import '../../core/storage/secure_storage.dart';
 import '../../core/storage/storage_service.dart';
+import '../../features/cash_register/data/datasources/bank_account_remote_data_source.dart';
 import '../../features/cash_register/data/datasources/cash_register_remote_data_source.dart';
+import '../../features/cash_register/data/datasources/openapi_bank_account_remote_data_source.dart';
 import '../../features/cash_register/data/datasources/openapi_cash_register_remote_data_source.dart';
+import '../../features/cash_register/data/mappers/bank_account_mapper.dart';
 import '../../features/cash_register/data/mappers/cash_register_mapper.dart';
+import '../../features/cash_register/data/repositories/bank_account_repository_impl.dart';
 import '../../features/cash_register/data/repositories/cash_register_repository_impl.dart';
+import '../../features/cash_register/domain/repositories/bank_account_repository.dart';
 import '../../features/cash_register/domain/repositories/cash_register_repository.dart';
 import '../../features/company/data/datasources/company_remote_data_source.dart';
 import '../../features/company/data/datasources/openapi_company_remote_data_source.dart';
@@ -171,6 +176,17 @@ void configureDependencies(AppEnvironment environment) {
     )
     ..registerLazySingleton<CashRegisterRepository>(
       () => CashRegisterRepositoryImpl(getIt<CashRegisterRemoteDataSource>()),
+    )
+    // --- Bank Account ---
+    ..registerLazySingleton<BankAccountMapper>(BankAccountMapper.new)
+    ..registerLazySingleton<BankAccountRemoteDataSource>(
+      () => OpenApiBankAccountRemoteDataSource(
+        getIt<ApiClient>(),
+        getIt<BankAccountMapper>(),
+      ),
+    )
+    ..registerLazySingleton<BankAccountRepository>(
+      () => BankAccountRepositoryImpl(getIt<BankAccountRemoteDataSource>()),
     )
     // --- Stock Movement ---
     ..registerLazySingleton<StockMovementMapper>(StockMovementMapper.new)

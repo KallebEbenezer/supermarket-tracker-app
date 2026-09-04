@@ -17,4 +17,7 @@ abstract class ProductRemoteDataSource {
     String id,
     Map<String, dynamic> payload,
   );
+
+  /// Delete a product by its ID.
+  Future<void> deleteProduct(String id);
 }

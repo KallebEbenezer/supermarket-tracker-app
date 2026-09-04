@@ -50,4 +50,13 @@ class ProductRepositoryImpl implements ProductRepository {
       throw ErrorMapper.map(error);
     }
   }
+
+  @override
+  Future<void> deleteProduct(String id) async {
+    try {
+      await _remote.deleteProduct(id);
+    } on Object catch (error) {
+      throw ErrorMapper.map(error);
+    }
+  }
 }

@@ -19,25 +19,28 @@ class ProductListScreen extends ConsumerWidget {
 
     // Sem empresa — não é possível listar produtos (produto pertence a empresa).
     if (empresaId == null || empresaId.isEmpty) {
-      return Center(
-        child: Padding(
-          padding: const EdgeInsets.all(AppSpacing.lg),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(AppIcons.business, size: 64),
-              const SizedBox(height: AppSpacing.md),
-              Text(
-                l10n.noCompany,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              const SizedBox(height: AppSpacing.md),
-              Text(
-                l10n.noCompanyMessage,
-                textAlign: TextAlign.center,
-              ),
-            ],
+      return Scaffold(
+        appBar: AppBar(title: Text(l10n.navProducts)),
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(AppSpacing.lg),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(AppIcons.business, size: 64),
+                const SizedBox(height: AppSpacing.md),
+                Text(
+                  l10n.noCompany,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                const SizedBox(height: AppSpacing.md),
+                Text(
+                  l10n.noCompanyMessage,
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
           ),
         ),
       );
@@ -45,31 +48,38 @@ class ProductListScreen extends ConsumerWidget {
 
     final products = ref.watch(productListProvider(empresaId));
 
-    return AsyncScreen<List<ProductEntity>>(
-      state: products,
-      isEmpty: (list) => list.isEmpty,
-      emptyTitle: l10n.noProducts,
-      emptyMessage: l10n.newProduct,
-      onRetry: () => ref.invalidate(productListProvider(empresaId)),
-      dataBuilder: (context, list) => RefreshIndicator(
-        onRefresh: () async =>
-            ref.invalidate(productListProvider(empresaId)),
-        child: list.isEmpty
-            ? _buildEmptyContent(context, l10n)
-            : ListView.separated(
-                padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
-                itemCount: list.length,
-                separatorBuilder: (_, index) => const AppDivider(),
-                itemBuilder: (context, index) {
-                  final product = list[index];
-                  return AppListTile(
-                    title: product.nome,
-                    subtitle:
-                        '${product.codigoBarras} • R\$ ${product.precoVenda.toStringAsFixed(2)}',
-                    onTap: () => context.go('/products/${product.id}'),
-                  );
-                },
-              ),
+    return Scaffold(
+      appBar: AppBar(title: Text(l10n.navProducts)),
+      body: AsyncScreen<List<ProductEntity>>(
+        state: products,
+        isEmpty: (list) => list.isEmpty,
+        emptyTitle: l10n.noProducts,
+        emptyMessage: l10n.newProduct,
+        onRetry: () => ref.invalidate(productListProvider(empresaId)),
+        dataBuilder: (context, list) => RefreshIndicator(
+          onRefresh: () async =>
+              ref.invalidate(productListProvider(empresaId)),
+          child: list.isEmpty
+              ? _buildEmptyContent(context, l10n)
+              : ListView.separated(
+                  padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
+                  itemCount: list.length,
+                  separatorBuilder: (_, index) => const AppDivider(),
+                  itemBuilder: (context, index) {
+                    final product = list[index];
+                    return AppListTile(
+                      title: product.nome,
+                      subtitle:
+                          '${product.codigoBarras} • R\$ ${product.precoVenda.toStringAsFixed(2)}',
+                      onTap: () => context.go('/products/${product.id}'),
+                    );
+                  },
+                ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => context.go('/products/new'),
+        child: const Icon(AppIcons.add),
       ),
     );
   }

@@ -36,6 +36,7 @@ final List<NavDestination> kNavDestinations = [
     label: (l10n) => l10n.dashboardTitle,
     icon: AppIcons.dashboard,
     route: '/dashboard',
+    // Dashboard acessível via ícone no AppBar (não na barra inferior)
   ),
   NavDestination(
     id: 'stores',
@@ -72,6 +73,7 @@ final List<NavDestination> kNavDestinations = [
     label: (l10n) => l10n.navStock,
     icon: AppIcons.stock,
     route: '/stock',
+    // Estoque no drawer "Mais"
   ),
   NavDestination(
     id: 'cash',

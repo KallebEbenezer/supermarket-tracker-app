@@ -150,6 +150,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get productBarcode => 'Código de barras';
 
   @override
+  String get productBarcodeHint =>
+      'Opcional - será gerado automaticamente se vazio';
+
+  @override
   String get productSalePrice => 'Preço de venda';
 
   @override
@@ -916,6 +920,10 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get productBarcode => 'Código de barras';
+
+  @override
+  String get productBarcodeHint =>
+      'Opcional - será gerado automaticamente se vazio';
 
   @override
   String get productSalePrice => 'Preço de venda';

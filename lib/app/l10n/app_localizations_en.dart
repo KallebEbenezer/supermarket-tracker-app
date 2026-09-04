@@ -150,6 +150,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get productBarcode => 'Barcode';
 
   @override
+  String get productBarcodeHint => 'Optional - will be auto-generated if empty';
+
+  @override
   String get productSalePrice => 'Sale price';
 
   @override

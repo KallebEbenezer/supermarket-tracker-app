@@ -131,6 +131,16 @@ class _ProductCreateScreenState extends ConsumerState<ProductCreateScreen> {
       return;
     }
 
+    final precoVendaValue = double.tryParse(precoVenda);
+    if (precoVendaValue == null || precoVendaValue <= 0) {
+      SnackBar.show(
+        context,
+        message: l10n.requiredField,
+        type: SnackBarType.warning,
+      );
+      return;
+    }
+
     if (empresaId == null || empresaId.isEmpty) {
       SnackBar.show(
         context,
@@ -144,9 +154,9 @@ class _ProductCreateScreenState extends ConsumerState<ProductCreateScreen> {
       final imagemUrl = _encodePhotoAsBase64();
       final payload = <String, dynamic>{
         'empresaId': empresaId,
-        'codigoBarras': codigoBarras,
+        'codigoBarras': codigoBarras.isEmpty ? null : codigoBarras,
         'nome': nome,
-        'precoVenda': double.tryParse(precoVenda) ?? 0,
+        'precoVenda': precoVendaValue,
         'precoCompra': double.tryParse(precoCompra) ?? 0,
         'estoqueMinimo': double.tryParse(estoqueMinimo) ?? 0,
       };
@@ -198,6 +208,7 @@ class _ProductCreateScreenState extends ConsumerState<ProductCreateScreen> {
         AppTextField(
           controller: _codigoBarrasController,
           label: l10n.productBarcode,
+          hint: l10n.productBarcodeHint,
           suffixIcon: IconButton(
             icon: const Icon(Icons.qr_code_scanner),
             onPressed: _scanBarcode,

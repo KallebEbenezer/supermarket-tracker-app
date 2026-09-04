@@ -47,6 +47,7 @@
   "editProduct": "Edit product",
   "productName": "Name",
   "productBarcode": "Barcode",
+  "productBarcodeHint": "Optional - will be auto-generated if empty",
   "productSalePrice": "Sale price",
   "productPurchasePrice": "Purchase price",
   "productMinStock": "Minimum stock",

@@ -47,6 +47,7 @@
   "editProduct": "Editar produto",
   "productName": "Nome",
   "productBarcode": "Código de barras",
+  "productBarcodeHint": "Opcional - será gerado automaticamente se vazio",
   "productSalePrice": "Preço de venda",
   "productPurchasePrice": "Preço de compra",
   "productMinStock": "Estoque mínimo",

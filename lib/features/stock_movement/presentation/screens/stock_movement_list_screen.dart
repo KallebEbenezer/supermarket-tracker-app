@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../app/l10n/app_localizations.dart';
 import '../../../../design_system/design_system.dart';
@@ -21,6 +22,7 @@ class StockMovementListScreen extends ConsumerWidget {
     // Sem empresa — não é possível listar movimentações (movimentação pertence a empresa).
     if (empresaId == null || empresaId.isEmpty) {
       return Scaffold(
+        appBar: AppBar(title: Text(l10n.navStock)),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(AppSpacing.lg),
@@ -50,6 +52,7 @@ class StockMovementListScreen extends ConsumerWidget {
     final productsAsync = ref.watch(productListProvider(empresaId));
 
     return Scaffold(
+      appBar: AppBar(title: Text(l10n.navStock)),
       body: AsyncScreen<List<StockMovementEntity>>(
         state: movements,
         isEmpty: (list) => list.isEmpty,
@@ -70,6 +73,10 @@ class StockMovementListScreen extends ConsumerWidget {
             },
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => context.go('/stock/new'),
+        child: const Icon(AppIcons.add),
       ),
     );
   }

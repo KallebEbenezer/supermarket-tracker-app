@@ -381,6 +381,12 @@ abstract class AppLocalizations {
   /// **'Código de barras'**
   String get productBarcode;
 
+  /// No description provided for @productBarcodeHint.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Opcional - será gerado automaticamente se vazio'**
+  String get productBarcodeHint;
+
   /// No description provided for @productSalePrice.
   ///
   /// In pt_BR, this message translates to:

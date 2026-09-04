@@ -49,3 +49,4 @@ netlog.json
 *.hprof
 android/build/.last_build_id
 libinput-config/
+android/build/

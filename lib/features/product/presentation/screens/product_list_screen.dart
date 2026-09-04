@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide SnackBar;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -11,6 +11,60 @@ import '../providers/product_providers.dart';
 
 class ProductListScreen extends ConsumerWidget {
   const ProductListScreen({super.key});
+
+  Future<void> _deleteProduct(
+    BuildContext context,
+    WidgetRef ref,
+    ProductEntity product,
+    String empresaId,
+  ) async {
+    final l10n = AppLocalizations.of(context)!;
+
+    // Confirma a exclusão
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Confirmar exclusão'),
+        content: Text(
+          'Tem certeza que deseja deletar o produto "${product.nome}"?',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: Text(l10n.cancel),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            style: TextButton.styleFrom(
+              foregroundColor: Theme.of(context).colorScheme.error,
+            ),
+            child: const Text('Deletar'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed != true || !context.mounted) return;
+
+    try {
+      await ref.read(productCreateProvider.notifier).delete(product.id);
+      if (context.mounted) {
+        SnackBar.show(
+          context,
+          message: 'Produto deletado com sucesso',
+          type: SnackBarType.success,
+        );
+      }
+    } on Object {
+      if (context.mounted) {
+        SnackBar.show(
+          context,
+          message: 'Erro ao deletar produto',
+          type: SnackBarType.error,
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -67,11 +121,13 @@ class ProductListScreen extends ConsumerWidget {
                   separatorBuilder: (_, index) => const AppDivider(),
                   itemBuilder: (context, index) {
                     final product = list[index];
-                    return AppListTile(
+                    return SwipeableListTile(
                       title: product.nome,
                       subtitle:
                           '${product.codigoBarras} • R\$ ${product.precoVenda.toStringAsFixed(2)}',
                       onTap: () => context.go('/products/${product.id}'),
+                      onEdit: () => context.go('/products/${product.id}'),
+                      onDelete: () => _deleteProduct(context, ref, product, empresaId),
                     );
                   },
                 ),

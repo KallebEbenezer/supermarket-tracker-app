@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../app/l10n/app_localizations.dart';
@@ -19,7 +20,39 @@ class DashboardScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
-    final empresaId = ref.watch(currentCompanyIdProvider) ?? '';
+    final empresaId = ref.watch(currentCompanyIdProvider);
+
+    // Sem empresa — dashboard precisa de empresa para mostrar métricas.
+    if (empresaId == null || empresaId.isEmpty) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(AppSpacing.lg),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(AppIcons.business, size: 64),
+              const SizedBox(height: AppSpacing.md),
+              Text(
+                l10n.noCompany,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: AppSpacing.md),
+              Text(
+                l10n.noCompanyMessage,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: AppSpacing.lg),
+              PrimaryButton(
+                label: l10n.createCompany,
+                onPressed: () => context.go('/company/new'),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
     final dashboard = ref.watch(dashboardProvider(empresaId));
 
     return AsyncScreen<DashboardEntity>(

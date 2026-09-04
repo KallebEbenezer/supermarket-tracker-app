@@ -120,6 +120,7 @@ class _ProductCreateScreenState extends ConsumerState<ProductCreateScreen> {
     final precoVenda = _precoVendaController.text.trim();
     final precoCompra = _precoCompraController.text.trim();
     final estoqueMinimo = _estoqueMinimoController.text.trim();
+    final empresaId = ref.read(currentCompanyIdProvider);
 
     if (nome.isEmpty || precoVenda.isEmpty) {
       SnackBar.show(
@@ -130,10 +131,19 @@ class _ProductCreateScreenState extends ConsumerState<ProductCreateScreen> {
       return;
     }
 
+    if (empresaId == null || empresaId.isEmpty) {
+      SnackBar.show(
+        context,
+        message: l10n.noCompanyMessage,
+        type: SnackBarType.warning,
+      );
+      return;
+    }
+
     try {
       final imagemUrl = _encodePhotoAsBase64();
       final payload = <String, dynamic>{
-        'empresaId': ref.read(currentCompanyIdProvider) ?? '',
+        'empresaId': empresaId,
         'codigoBarras': codigoBarras,
         'nome': nome,
         'precoVenda': double.tryParse(precoVenda) ?? 0,

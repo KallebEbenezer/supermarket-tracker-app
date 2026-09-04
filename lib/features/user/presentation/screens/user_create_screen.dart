@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../app/l10n/app_localizations.dart';
 import '../../../../core/errors/app_exception.dart';
 import '../../../../design_system/design_system.dart';
-import '../../../_shared/presentation/constants.dart';
+import '../../../_shared/presentation/providers/repository_providers.dart';
 import '../providers/user_providers.dart';
 
 class UserCreateScreen extends ConsumerStatefulWidget {
@@ -32,6 +32,7 @@ class _UserCreateScreenState extends ConsumerState<UserCreateScreen> {
     final l10n = AppLocalizations.of(context)!;
     final nome = _nomeController.text.trim();
     final email = _emailController.text.trim();
+    final authUser = ref.read(sessionManagerProvider).currentUser;
 
     if (nome.isEmpty || email.isEmpty) {
       SnackBar.show(
@@ -41,10 +42,18 @@ class _UserCreateScreenState extends ConsumerState<UserCreateScreen> {
       );
       return;
     }
+    if (authUser == null) {
+      SnackBar.show(
+        context,
+        message: l10n.genericError,
+        type: SnackBarType.error,
+      );
+      return;
+    }
 
     try {
       final created = await ref.read(userCreateProvider.notifier).create({
-        'authUserId': '',
+        'authUserId': authUser.id,
         'nome': nome,
         'email': email,
         'telefone': _telefoneController.text.trim(),

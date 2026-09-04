@@ -621,11 +621,17 @@ class AppLocalizationsPt extends AppLocalizations {
       'Crie uma loja para começar a usar o sistema.';
 
   @override
+  String get createStore => 'Criar loja';
+
+  @override
   String get storeSelected => 'Loja selecionada com sucesso';
 
   @override
   String get createCashRegisterMessage =>
       'Crie um caixa para começar a registrar vendas.';
+
+  @override
+  String get createCashRegister => 'Criar caixa';
 
   @override
   String get nfcAvailable => 'NFC disponível';
@@ -1383,11 +1389,17 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
       'Crie uma loja para começar a usar o sistema.';
 
   @override
+  String get createStore => 'Criar loja';
+
+  @override
   String get storeSelected => 'Loja selecionada com sucesso';
 
   @override
   String get createCashRegisterMessage =>
       'Crie um caixa para começar a registrar vendas.';
+
+  @override
+  String get createCashRegister => 'Criar caixa';
 
   @override
   String get nfcAvailable => 'NFC disponível';

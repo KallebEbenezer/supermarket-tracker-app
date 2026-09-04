@@ -24,7 +24,43 @@ class _StoreListScreenState extends ConsumerState<StoreListScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final empresaId = ref.watch(currentCompanyIdProvider) ?? '';
+    final empresaId = ref.watch(currentCompanyIdProvider);
+
+    // Sem empresa selecionada — as lojas pertencem a uma empresa, então
+    // orienta o usuário a criar uma antes (em vez de travar no carregamento).
+    if (empresaId == null || empresaId.isEmpty) {
+      return Scaffold(
+        appBar: AppBar(title: Text(l10n.storesTitle)),
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(AppSpacing.lg),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(AppIcons.business, size: 64),
+                const SizedBox(height: AppSpacing.md),
+                Text(
+                  l10n.noCompany,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                const SizedBox(height: AppSpacing.md),
+                Text(
+                  l10n.noCompanyMessage,
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: AppSpacing.lg),
+                PrimaryButton(
+                  label: l10n.createCompany,
+                  onPressed: () => context.go('/company/new'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+
     final stores = ref.watch(storeListProvider(empresaId));
 
     // Auto-select when the list resolves to a single store. Runs in a

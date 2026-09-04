@@ -28,6 +28,7 @@ class _StoreCreateScreenState extends ConsumerState<StoreCreateScreen> {
   Future<void> _submit() async {
     final l10n = AppLocalizations.of(context)!;
     final nome = _nomeController.text.trim();
+    final empresaId = ref.read(currentCompanyIdProvider);
 
     if (nome.isEmpty) {
       SnackBar.show(
@@ -38,10 +39,21 @@ class _StoreCreateScreenState extends ConsumerState<StoreCreateScreen> {
       return;
     }
 
+    // Sem empresa — não é possível criar loja (loja pertence a uma empresa).
+    if (empresaId == null || empresaId.isEmpty) {
+      SnackBar.show(
+        context,
+        message: l10n.noCompanyMessage,
+        type: SnackBarType.warning,
+      );
+      context.go('/company/new');
+      return;
+    }
+
     try {
       final created = await ref.read(storeCreateProvider.notifier).create({
         'nome': nome,
-        'empresaId': ref.read(currentCompanyIdProvider) ?? '',
+        'empresaId': empresaId,
       });
       if (mounted) {
         SnackBar.show(

@@ -36,6 +36,7 @@ class _CustomerCreateScreenState extends ConsumerState<CustomerCreateScreen> {
   Future<void> _submit() async {
     final l10n = AppLocalizations.of(context)!;
     final nome = _nomeController.text.trim();
+    final empresaId = ref.read(currentCompanyIdProvider);
 
     if (nome.isEmpty) {
       SnackBar.show(
@@ -46,10 +47,21 @@ class _CustomerCreateScreenState extends ConsumerState<CustomerCreateScreen> {
       return;
     }
 
+    // Sem empresa — não é possível criar cliente.
+    if (empresaId == null || empresaId.isEmpty) {
+      SnackBar.show(
+        context,
+        message: l10n.noCompanyMessage,
+        type: SnackBarType.warning,
+      );
+      context.go('/company/new');
+      return;
+    }
+
     try {
       final created =
           await ref.read(customerCreateProvider.notifier).create({
-        'empresaId': ref.read(currentCompanyIdProvider) ?? '',
+        'empresaId': empresaId,
         'nome': nome,
         'cpfCnpj': _cpfCnpjController.text.trim(),
         'email': _emailController.text.trim(),

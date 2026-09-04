@@ -12,6 +12,11 @@ abstract interface class AuthRepository {
   /// Retorna o usuário autenticado atual (endpoint `/me`).
   Future<AuthUser> me();
 
+  /// Garante que a sessão tenha empresa/loja selecionadas, buscando a primeira
+  /// disponível quando estiverem ausentes (ex.: sessão restaurada de um login
+  /// antigo, antes do auto-provisionamento). Usado na inicialização do app.
+  Future<void> ensureSessionContext();
+
   /// Solicita a redefinição de senha pelo e-mail.
   Future<void> solicitarReset(ForgotPasswordPayload payload);
 

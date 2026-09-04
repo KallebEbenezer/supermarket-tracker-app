@@ -1,16 +1,18 @@
 import 'package:supermarket_tracker_android/core/session/session_manager.dart';
 import 'package:supermarket_tracker_android/features/auth/domain/entities/credentials.dart';
 import 'package:supermarket_tracker_android/features/auth/domain/repositories/auth_repository.dart';
+import 'package:supermarket_tracker_android/features/store/domain/repositories/store_repository.dart';
 
 import '../datasources/auth_remote_data_source.dart';
 
 /// Implementação de [AuthRepository] usando a fonte de dados remota e o
 /// [SessionManager] para persistir a sessão.
 class AuthRepositoryImpl implements AuthRepository {
-  AuthRepositoryImpl(this._dataSource, this._sessionManager);
+  AuthRepositoryImpl(this._dataSource, this._sessionManager, this._storeRepository);
 
   final AuthRemoteDataSource _dataSource;
   final SessionManager _sessionManager;
+  final StoreRepository _storeRepository;
 
   @override
   Future<AuthSession> login(LoginCredentials credentials) async {
@@ -41,20 +43,51 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   /// Busca as empresas do usuário e seleciona a primeira, se disponível.
+  /// Também busca a primeira loja da empresa e seleciona como loja padrão.
   Future<void> _trySelectEmpresa(String userId) async {
-    if (_sessionManager.empresaId != null) return;
+    if (_sessionManager.empresaId != null) {
+      // Já tem empresa, mas pode não ter lojaId — busca a primeira loja.
+      if (_sessionManager.lojaId == null) {
+        await _trySelectLoja(_sessionManager.empresaId!);
+      }
+      return;
+    }
     try {
       final empresas = await _dataSource.listEmpresas(userId);
       if (empresas.isNotEmpty) {
-        await _sessionManager.setEmpresaId(empresas.first['id'] as String);
+        final empresaId = empresas.first['id'] as String;
+        await _sessionManager.setEmpresaId(empresaId);
+        await _trySelectLoja(empresaId);
       }
     } on Object {
       // Ignora — o usuário poderá criar empresa depois.
     }
   }
 
+  /// Busca a primeira loja da empresa e seleciona como loja padrão.
+  Future<void> _trySelectLoja(String empresaId) async {
+    try {
+      final lojas = await _storeRepository.listStores(empresaId, size: 1);
+      if (lojas.isNotEmpty) {
+        await _sessionManager.setLojaId(lojas.first.id);
+      }
+    } on Object {
+      // Ignora — o usuário poderá criar loja depois.
+    }
+  }
+
   @override
   Future<AuthUser> me() async => (await _dataSource.me()).requireData();
+
+  @override
+  Future<void> ensureSessionContext() async {
+    final user = _sessionManager.currentUser;
+    if (user == null) return;
+    if (_sessionManager.empresaId != null && _sessionManager.lojaId != null) {
+      return;
+    }
+    await _trySelectEmpresa(user.id);
+  }
 
   @override
   Future<void> solicitarReset(ForgotPasswordPayload payload) =>

@@ -233,6 +233,7 @@ void configureDependencies(AppEnvironment environment) {
       () => AuthRepositoryImpl(
         getIt<AuthRemoteDataSource>(),
         getIt<SessionManager>(),
+        getIt<StoreRepository>(),
       ),
     );
 }

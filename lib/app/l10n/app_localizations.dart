@@ -1299,6 +1299,12 @@ abstract class AppLocalizations {
   /// **'Crie uma loja para começar a usar o sistema.'**
   String get createStoreMessage;
 
+  /// No description provided for @createStore.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Criar loja'**
+  String get createStore;
+
   /// No description provided for @storeSelected.
   ///
   /// In pt_BR, this message translates to:
@@ -1310,6 +1316,12 @@ abstract class AppLocalizations {
   /// In pt_BR, this message translates to:
   /// **'Crie um caixa para começar a registrar vendas.'**
   String get createCashRegisterMessage;
+
+  /// No description provided for @createCashRegister.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Criar caixa'**
+  String get createCashRegister;
 
   /// No description provided for @nfcAvailable.
   ///

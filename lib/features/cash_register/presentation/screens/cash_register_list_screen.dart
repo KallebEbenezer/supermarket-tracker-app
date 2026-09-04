@@ -16,7 +16,43 @@ class CashRegisterListScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
-    final lojaId = ref.watch(sessionManagerProvider).lojaId ?? '';
+    final lojaId = ref.watch(sessionManagerProvider).lojaId;
+
+    // Sem loja selecionada — um caixa pertence a uma loja, então orienta o
+    // usuário a criar/entrar numa loja antes (com ação clara).
+    if (lojaId == null || lojaId.isEmpty) {
+      return Scaffold(
+        appBar: AppBar(title: Text(l10n.navCash)),
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(AppSpacing.lg),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(AppIcons.store, size: 64),
+                const SizedBox(height: AppSpacing.md),
+                Text(
+                  l10n.noStores,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                const SizedBox(height: AppSpacing.md),
+                Text(
+                  l10n.createStoreMessage,
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: AppSpacing.lg),
+                PrimaryButton(
+                  label: l10n.createStore,
+                  onPressed: () => context.go('/stores/new'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+
     final cashRegisters = ref.watch(cashRegisterListProvider(lojaId));
 
     return Scaffold(

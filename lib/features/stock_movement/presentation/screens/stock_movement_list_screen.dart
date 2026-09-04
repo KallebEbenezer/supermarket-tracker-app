@@ -16,7 +16,36 @@ class StockMovementListScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
-    final empresaId = ref.watch(currentCompanyIdProvider) ?? '';
+    final empresaId = ref.watch(currentCompanyIdProvider);
+
+    // Sem empresa — não é possível listar movimentações (movimentação pertence a empresa).
+    if (empresaId == null || empresaId.isEmpty) {
+      return Scaffold(
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(AppSpacing.lg),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(AppIcons.business, size: 64),
+                const SizedBox(height: AppSpacing.md),
+                Text(
+                  l10n.noCompany,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                const SizedBox(height: AppSpacing.md),
+                Text(
+                  l10n.noCompanyMessage,
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+
     final movements = ref.watch(stockMovementListProvider(empresaId));
     final productsAsync = ref.watch(productListProvider(empresaId));
 

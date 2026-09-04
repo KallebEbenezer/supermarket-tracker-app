@@ -615,11 +615,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get createStoreMessage => 'Create a store to start using the system.';
 
   @override
+  String get createStore => 'Create store';
+
+  @override
   String get storeSelected => 'Store selected successfully';
 
   @override
   String get createCashRegisterMessage =>
       'Create a cash register to start recording sales.';
+
+  @override
+  String get createCashRegister => 'Create cash register';
 
   @override
   String get nfcAvailable => 'NFC available';

@@ -36,9 +36,28 @@ class _StockMovementCreateScreenState
 
   Future<void> _submit() async {
     final l10n = AppLocalizations.of(context)!;
-    final empresaId = ref.read(currentCompanyIdProvider) ?? '';
+    final empresaId = ref.read(currentCompanyIdProvider);
+    final lojaId = ref.read(sessionManagerProvider).lojaId;
     final usuarioId =
         ref.read(sessionManagerProvider).currentUser?.id ?? '';
+
+    if (empresaId == null || empresaId.isEmpty) {
+      SnackBar.show(
+        context,
+        message: l10n.noCompanyMessage,
+        type: SnackBarType.warning,
+      );
+      return;
+    }
+
+    if (lojaId == null || lojaId.isEmpty) {
+      SnackBar.show(
+        context,
+        message: l10n.createStoreMessage,
+        type: SnackBarType.warning,
+      );
+      return;
+    }
 
     if (_selectedProduct == null || _selectedTipo == null) {
       SnackBar.show(
@@ -61,10 +80,11 @@ class _StockMovementCreateScreenState
     }
 
     try {
-      final created = await ref
+      await ref
           .read(stockMovementCreateProvider.notifier)
           .create({
         'empresaId': empresaId,
+        'lojaId': lojaId,
         'produtoId': _selectedProduct!.id,
         'usuarioId': usuarioId,
         'tipo': _selectedTipo!,
@@ -92,8 +112,35 @@ class _StockMovementCreateScreenState
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final empresaId = ref.watch(currentCompanyIdProvider) ?? '';
+    final empresaId = ref.watch(currentCompanyIdProvider);
     final createState = ref.watch(stockMovementCreateProvider);
+
+    // Sem empresa — não é possível criar movimentação (movimentação pertence a empresa).
+    if (empresaId == null || empresaId.isEmpty) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(AppSpacing.lg),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(AppIcons.business, size: 64),
+              const SizedBox(height: AppSpacing.md),
+              Text(
+                l10n.noCompany,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: AppSpacing.md),
+              Text(
+                l10n.noCompanyMessage,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
     final productsAsync = ref.watch(productListProvider(empresaId));
 
     return ListView(

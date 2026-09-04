@@ -44,3 +44,8 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 netlog.json
+
+# Build artifacts
+*.hprof
+android/build/.last_build_id
+libinput-config/

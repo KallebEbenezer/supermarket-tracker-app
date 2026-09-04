@@ -58,4 +58,7 @@ class OpenApiProductRemoteDataSource implements ProductRemoteDataSource {
           (value) => _mapper.fromJson(value as Map<String, dynamic>),
         ),
       );
+
+  @override
+  Future<void> deleteProduct(String id) => _client.delete('/api/v1/produtos/$id');
 }

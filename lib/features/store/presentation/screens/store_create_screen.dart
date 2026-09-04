@@ -6,6 +6,7 @@ import '../../../../app/l10n/app_localizations.dart';
 import '../../../../core/errors/app_exception.dart';
 import '../../../../design_system/design_system.dart';
 import '../../../_shared/presentation/providers/company_provider.dart';
+import '../../../_shared/presentation/providers/repository_providers.dart';
 import '../providers/store_providers.dart';
 
 /// Formulário de criação de loja (rota `/stores/new`).
@@ -28,7 +29,7 @@ class _StoreCreateScreenState extends ConsumerState<StoreCreateScreen> {
   Future<void> _submit() async {
     final l10n = AppLocalizations.of(context)!;
     final nome = _nomeController.text.trim();
-    final empresaId = ref.read(currentCompanyIdProvider);
+    var empresaId = ref.read(currentCompanyIdProvider);
 
     if (nome.isEmpty) {
       SnackBar.show(
@@ -39,29 +40,56 @@ class _StoreCreateScreenState extends ConsumerState<StoreCreateScreen> {
       return;
     }
 
-    // Sem empresa — não é possível criar loja (loja pertence a uma empresa).
+    // Sem empresa — tenta carregar empresas disponíveis antes de redirecionar.
     if (empresaId == null || empresaId.isEmpty) {
-      SnackBar.show(
-        context,
-        message: l10n.noCompanyMessage,
-        type: SnackBarType.warning,
-      );
-      context.go('/company/new');
-      return;
+      try {
+        // Tenta carregar e selecionar uma empresa disponível
+        await ref.read(authRepositoryProvider).ensureSessionContext();
+
+        // Verifica novamente se agora temos uma empresa selecionada
+        empresaId = ref.read(currentCompanyIdProvider);
+
+        if (empresaId == null || empresaId.isEmpty) {
+          // Realmente não há empresas — redireciona para criar
+          if (mounted) {
+            SnackBar.show(
+              context,
+              message: l10n.noCompanyMessage,
+              type: SnackBarType.warning,
+            );
+            context.go('/company/new');
+          }
+          return;
+        }
+      } on Object {
+        // Se falhar ao buscar empresas, redireciona para criar
+        if (mounted) {
+          SnackBar.show(
+            context,
+            message: l10n.noCompanyMessage,
+            type: SnackBarType.warning,
+          );
+          context.go('/company/new');
+        }
+        return;
+      }
     }
 
     try {
-      final created = await ref.read(storeCreateProvider.notifier).create({
+      await ref.read(storeCreateProvider.notifier).create({
         'nome': nome,
         'empresaId': empresaId,
       });
       if (mounted) {
+        // Limpa o campo para permitir criar outra loja
+        _nomeController.clear();
         SnackBar.show(
           context,
           message: l10n.storeCreated,
           type: SnackBarType.success,
         );
-        context.go('/stores/${created.id}');
+        // Volta para a lista que será recarregada automaticamente
+        context.pop();
       }
     } on Object catch (error) {
       if (mounted) {

@@ -70,4 +70,19 @@ class ProductCreateNotifier extends Notifier<ProductCreateState> {
       rethrow;
     }
   }
+
+  Future<void> delete(String id) async {
+    state = state.copyWith(submitting: true, error: null);
+    try {
+      await ref.read(productRepositoryProvider).deleteProduct(id);
+      ref.invalidate(productListProvider);
+      ref.invalidate(productDetailProvider(id));
+      state = state.copyWith(submitting: false);
+    } on Object catch (error) {
+      final message =
+          error is AppException ? error.message : 'Erro ao deletar produto';
+      state = state.copyWith(submitting: false, error: message);
+      rethrow;
+    }
+  }
 }

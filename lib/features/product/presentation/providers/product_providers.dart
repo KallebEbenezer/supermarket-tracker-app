@@ -53,4 +53,21 @@ class ProductCreateNotifier extends Notifier<ProductCreateState> {
       rethrow;
     }
   }
+
+  Future<ProductEntity> update(String id, Map<String, dynamic> payload) async {
+    state = state.copyWith(submitting: true, error: null);
+    try {
+      final updated =
+          await ref.read(productRepositoryProvider).updateProduct(id, payload);
+      ref.invalidate(productListProvider);
+      ref.invalidate(productDetailProvider(id));
+      state = state.copyWith(submitting: false);
+      return updated;
+    } on Object catch (error) {
+      final message =
+          error is AppException ? error.message : 'Erro ao atualizar produto';
+      state = state.copyWith(submitting: false, error: message);
+      rethrow;
+    }
+  }
 }

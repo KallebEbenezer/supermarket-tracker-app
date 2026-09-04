@@ -37,4 +37,17 @@ class ProductRepositoryImpl implements ProductRepository {
       throw ErrorMapper.map(error);
     }
   }
+
+  @override
+  Future<ProductEntity> updateProduct(
+    String id,
+    Map<String, dynamic> payload,
+  ) async {
+    try {
+      final envelope = await _remote.updateProduct(id, payload);
+      return envelope.requireData();
+    } on Object catch (error) {
+      throw ErrorMapper.map(error);
+    }
+  }
 }

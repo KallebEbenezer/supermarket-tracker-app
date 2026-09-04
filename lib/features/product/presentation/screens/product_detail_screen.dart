@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../app/l10n/app_localizations.dart';
 import '../../../../design_system/design_system.dart';
@@ -44,6 +45,11 @@ class ProductDetailScreen extends ConsumerWidget {
                 AppListTile(title: l10n.productStatus, subtitle: data.status),
               ],
             ),
+          ),
+          const SizedBox(height: AppSpacing.md),
+          PrimaryButton(
+            label: l10n.editProduct,
+            onPressed: () => context.go('/products/$productId/edit'),
           ),
         ],
       ),

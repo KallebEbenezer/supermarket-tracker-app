@@ -11,4 +11,10 @@ abstract class ProductRemoteDataSource {
 
   /// Retrieve a single product by its ID.
   Future<ApiEnvelope<ProductEntity>> getProduct(String productId);
+
+  /// Update an existing product.
+  Future<ApiEnvelope<ProductEntity>> updateProduct(
+    String id,
+    Map<String, dynamic> payload,
+  );
 }

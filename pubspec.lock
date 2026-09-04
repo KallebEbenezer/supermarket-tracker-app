@@ -57,6 +57,46 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
+  camera:
+    dependency: "direct main"
+    description:
+      name: camera
+      sha256: "4142a19a38e388d3bab444227636610ba88982e36dff4552d5191a86f65dc437"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.11.4"
+  camera_android_camerax:
+    dependency: transitive
+    description:
+      name: camera_android_camerax
+      sha256: "8516fe308bc341a5067fb1a48edff0ddfa57c0d3cdcc9dbe7ceca3ba119e2577"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.6.30"
+  camera_avfoundation:
+    dependency: transitive
+    description:
+      name: camera_avfoundation
+      sha256: "11b4aee2f5e5e038982e152b4a342c749b414aa27857899d20f4323e94cb5f0b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.9.23+2"
+  camera_platform_interface:
+    dependency: transitive
+    description:
+      name: camera_platform_interface
+      sha256: "4524ca6eb4176b066864036ad4fe02c3e4863e63b77eadc21a5bf56824f43498"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.13.1"
+  camera_web:
+    dependency: transitive
+    description:
+      name: camera_web
+      sha256: "1245a480a113437f8d46d19c0fb90cea9db921436d9cf2ba5fb11854a1312693"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.5+4"
   characters:
     dependency: transitive
     description:
@@ -145,6 +185,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.15.1"
+  cross_file:
+    dependency: transitive
+    description:
+      name: cross_file
+      sha256: "92c9c43c383bfa1c32079d3bc492d55d6d4318044b7b47edaff8971cbb555c51"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.5+4"
   crypto:
     dependency: transitive
     description:
@@ -267,6 +315,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.8"
+  flutter_plugin_android_lifecycle:
+    dependency: transitive
+    description:
+      name: flutter_plugin_android_lifecycle
+      sha256: "3854fe5e3bff0b113c658f260b90c95dea17c92db0f2addeac2e343dd9969785"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.35"
   flutter_riverpod:
     dependency: "direct main"
     description:
@@ -525,6 +581,38 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
+  mobile_scanner:
+    dependency: "direct main"
+    description:
+      name: mobile_scanner
+      sha256: ce3f059ebd6dbfab7292bba0e893e354b46730636820d3c9ef69005ce2d55bce
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.4.0"
+  mocktail:
+    dependency: "direct dev"
+    description:
+      name: mocktail
+      sha256: "5e1bf53cc7baa8062a33b84424deb61513858ea05c601b8509e683815b5914aa"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.5"
+  ndef_record:
+    dependency: transitive
+    description:
+      name: ndef_record
+      sha256: "210ffb12284961cab9e44b99462143316d9a20cd992581170706069ef77d74a6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.4.2"
+  nfc_manager:
+    dependency: "direct main"
+    description:
+      name: nfc_manager
+      sha256: "1b8d3788ed71bb34f59878a445e433891eb2268353289515c1542b2780151fe6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.1"
   nm:
     dependency: transitive
     description:
@@ -661,6 +749,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
+  qr:
+    dependency: transitive
+    description:
+      name: qr
+      sha256: "5a1d2586170e172b8a8c8470bbbffd5eb0cd38a66c0d77155ea138d3af3a4445"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.2"
+  qr_flutter:
+    dependency: "direct main"
+    description:
+      name: qr_flutter
+      sha256: "5095f0fc6e3f71d08adef8feccc8cea4f12eec18a2e31c2e8d82cb6019f4b097"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.0"
   record_use:
     dependency: transitive
     description:
@@ -818,6 +922,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  stream_transform:
+    dependency: transitive
+    description:
+      name: stream_transform
+      sha256: ad47125e588cfd37a9a7f86c7d6356dde8dfe89d071d293f80ca9e9273a33871
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.1"
   string_scanner:
     dependency: transitive
     description:
@@ -923,7 +1035,7 @@ packages:
     source: hosted
     version: "1.0.1"
   web_socket_channel:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: web_socket_channel
       sha256: d645757fb0f4773d602444000a8131ff5d48c9e47adfe9772652dd1a4f2d45c8

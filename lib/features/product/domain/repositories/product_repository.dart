@@ -6,4 +6,5 @@ abstract class ProductRepository {
   Future<ProductEntity> createProduct(Map<String, dynamic> payload);
   Future<ProductEntity> updateProduct(String id, Map<String, dynamic> payload);
   Future<ProductEntity> getProduct(String productId);
+  Future<void> deleteProduct(String id);
 }

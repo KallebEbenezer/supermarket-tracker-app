@@ -21,4 +21,10 @@ abstract class CashRegisterRemoteDataSource {
     String cashRegisterId,
     Map<String, dynamic> payload,
   );
+
+  /// Busca a sessão de caixa atualmente aberta. Lança [AppException] de 404
+  /// quando não há sessão aberta — o chamador decide como tratar.
+  Future<ApiEnvelope<CashSessionEntity>> getCurrentCashSession(
+    String cashRegisterId,
+  );
 }

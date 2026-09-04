@@ -1,3 +1,4 @@
+import '../../../../core/errors/app_exception.dart';
 import '../../../../core/errors/error_mapper.dart';
 import '../../domain/entities/cash_register_entity.dart';
 import '../../domain/entities/cash_session_entity.dart';
@@ -50,6 +51,21 @@ class CashRegisterRepositoryImpl implements CashRegisterRepository {
     try {
       final envelope = await _remote.closeCurrentCashSession(cashRegisterId, payload);
       return envelope.requireData();
+    } on Object catch (error) {
+      throw ErrorMapper.map(error);
+    }
+  }
+
+  @override
+  Future<CashSessionEntity?> getCurrentCashSession(
+    String cashRegisterId,
+  ) async {
+    try {
+      final envelope = await _remote.getCurrentCashSession(cashRegisterId);
+      return envelope.requireData();
+    } on NotFoundException {
+      // Sem sessão aberta: o endpoint responde 404.
+      return null;
     } on Object catch (error) {
       throw ErrorMapper.map(error);
     }

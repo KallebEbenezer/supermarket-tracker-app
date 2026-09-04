@@ -64,4 +64,16 @@ class OpenApiCashRegisterRemoteDataSource implements CashRegisterRemoteDataSourc
           (value) => _mapper.fromJsonSession(value as Map<String, dynamic>),
         ),
       );
+
+  @override
+  Future<ApiEnvelope<CashSessionEntity>> getCurrentCashSession(
+    String cashRegisterId,
+  ) =>
+      _client.get(
+        '/api/v1/caixas/$cashRegisterId/sessoes/atual',
+        parser: (data) => ApiEnvelope.fromJson(
+          data as Map<String, dynamic>,
+          (value) => _mapper.fromJsonSession(value as Map<String, dynamic>),
+        ),
+      );
 }

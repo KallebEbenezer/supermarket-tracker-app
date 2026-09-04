@@ -4,8 +4,9 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../app/l10n/app_localizations.dart';
 import '../../../../core/errors/app_exception.dart';
+import '../../../../core/session/session_manager.dart';
 import '../../../../design_system/design_system.dart';
-import '../../../_shared/presentation/providers/company_provider.dart';
+import '../../../_shared/presentation/providers/repository_providers.dart';
 import '../providers/cash_register_providers.dart';
 
 /// Formulário de criação de caixa (rota `/cash/new`).
@@ -21,13 +22,11 @@ class _CashRegisterCreateScreenState
     extends ConsumerState<CashRegisterCreateScreen> {
   final _codigoController = TextEditingController();
   final _nomeController = TextEditingController();
-  final _lojaIdController = TextEditingController();
 
   @override
   void dispose() {
     _codigoController.dispose();
     _nomeController.dispose();
-    _lojaIdController.dispose();
     super.dispose();
   }
 
@@ -35,7 +34,7 @@ class _CashRegisterCreateScreenState
     final l10n = AppLocalizations.of(context)!;
     final codigo = _codigoController.text.trim();
     final nome = _nomeController.text.trim();
-    final lojaId = _lojaIdController.text.trim();
+    final lojaId = ref.read(sessionManagerProvider).lojaId ?? '';
 
     if (codigo.isEmpty || nome.isEmpty || lojaId.isEmpty) {
       SnackBar.show(
@@ -76,11 +75,6 @@ class _CashRegisterCreateScreenState
     return ListView(
       padding: const EdgeInsets.all(AppSpacing.md),
       children: [
-        AppTextField(
-          controller: _lojaIdController,
-          label: 'Loja ID',
-        ),
-        const SizedBox(height: AppSpacing.md),
         AppTextField(
           controller: _codigoController,
           label: l10n.storeCode,

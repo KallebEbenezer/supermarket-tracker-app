@@ -52,15 +52,31 @@ class CashRegisterCreateNotifier extends Notifier<CashRegisterCreateState> {
 
 /// Estado do formulário de sessão de caixa.
 class CashSessionState {
-  const CashSessionState({this.submitting = false, this.error});
+  const CashSessionState({
+    this.submitting = false,
+    this.error,
+    this.currentSession,
+    this.sessionHistory = const [],
+  });
 
   final bool submitting;
   final String? error;
+  final CashSessionEntity? currentSession;
+  final List<CashSessionEntity> sessionHistory;
 
-  CashSessionState copyWith({bool? submitting, String? error}) =>
+  bool get hasActiveSession => currentSession?.status == 'ABERTO';
+
+  CashSessionState copyWith({
+    bool? submitting,
+    String? error,
+    CashSessionEntity? currentSession,
+    List<CashSessionEntity>? sessionHistory,
+  }) =>
       CashSessionState(
         submitting: submitting ?? this.submitting,
         error: error,
+        currentSession: currentSession ?? this.currentSession,
+        sessionHistory: sessionHistory ?? this.sessionHistory,
       );
 }
 
@@ -80,7 +96,11 @@ class CashSessionNotifier extends Notifier<CashSessionState> {
       final session = await ref
           .read(cashRegisterRepositoryProvider)
           .openCashSession(cashRegisterId, payload);
-      state = state.copyWith(submitting: false);
+      state = state.copyWith(
+        submitting: false,
+        currentSession: session,
+        sessionHistory: [session, ...state.sessionHistory],
+      );
       return session;
     } on Object catch (error) {
       final message =
@@ -90,6 +110,32 @@ class CashSessionNotifier extends Notifier<CashSessionState> {
     }
   }
 
+  /// Carrega a sessão de caixa aberta no backend (se houver) e popula o
+  /// estado atual, sem alterar `submitting`. Usado ao abrir a tela de detalhe
+  /// para sincronizar uma sessão já aberta (ex.: reaberta após fechar o app).
+  ///
+  /// Quando o backend não tem sessão aberta (404), limpa `currentSession` para
+  /// que a tela reflita o estado real (mostra o formulário de abrir) em vez de
+  /// ficar presa numa sessão que já foi fechada em outro ponto.
+  Future<CashSessionEntity?> loadCurrentSession(String cashRegisterId) async {
+    final session = await ref
+        .read(cashRegisterRepositoryProvider)
+        .getCurrentCashSession(cashRegisterId);
+    if (session != null) {
+      state = state.copyWith(
+        currentSession: session,
+        sessionHistory: [
+          for (final s in state.sessionHistory)
+            if (s.id == session.id) session else s,
+          if (!state.sessionHistory.any((s) => s.id == session.id)) session,
+        ],
+      );
+    } else {
+      state = state.copyWith(currentSession: null);
+    }
+    return session;
+  }
+
   Future<CashSessionEntity> closeSession(
       String cashRegisterId, Map<String, dynamic> payload) async {
     state = state.copyWith(submitting: true, error: null);
@@ -97,7 +143,15 @@ class CashSessionNotifier extends Notifier<CashSessionState> {
       final session = await ref
           .read(cashRegisterRepositoryProvider)
           .closeCurrentCashSession(cashRegisterId, payload);
-      state = state.copyWith(submitting: false);
+      final updatedHistory = [
+        for (final s in state.sessionHistory)
+          if (s.id == session.id) session else s,
+      ];
+      state = state.copyWith(
+        submitting: false,
+        currentSession: null,
+        sessionHistory: updatedHistory,
+      );
       return session;
     } on Object catch (error) {
       final message =
@@ -105,5 +159,9 @@ class CashSessionNotifier extends Notifier<CashSessionState> {
       state = state.copyWith(submitting: false, error: message);
       rethrow;
     }
+  }
+
+  void reset() {
+    state = const CashSessionState();
   }
 }

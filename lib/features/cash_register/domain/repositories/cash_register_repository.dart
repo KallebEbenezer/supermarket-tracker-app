@@ -10,4 +10,8 @@ abstract class CashRegisterRepository {
     String cashRegisterId,
     Map<String, dynamic> payload,
   );
+
+  /// Busca a sessão de caixa atualmente aberta. Retorna `null` quando o
+  /// backend responde 404 (nenhuma sessão aberta).
+  Future<CashSessionEntity?> getCurrentCashSession(String cashRegisterId);
 }

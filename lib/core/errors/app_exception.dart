@@ -65,7 +65,14 @@ class RateLimitException extends AppException {
 
 /// 500 Internal Server Error
 class ServerException extends AppException {
-  const ServerException(super.message, {super.statusCode = 500, super.cause});
+  const ServerException(
+    super.message, {
+    super.statusCode = 500,
+    super.cause,
+    this.traceId,
+  });
+
+  final String? traceId;
 }
 
 /// 502 Bad Gateway

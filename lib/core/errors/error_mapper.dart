@@ -39,7 +39,10 @@ abstract final class ErrorMapper {
           _extractValidationErrors(error),
         ),
         429 => RateLimitException(_message(error) ?? 'Muitas requisições'),
-        500 => ServerException(_message(error) ?? 'Erro interno do servidor'),
+        500 => ServerException(
+          _message(error) ?? 'Erro interno do servidor',
+          traceId: _traceId(error),
+        ),
         502 => BadGatewayException(_message(error) ?? 'Bad gateway'),
         503 => ServiceUnavailableException(_message(error) ?? 'Serviço indisponível'),
         504 => GatewayTimeoutException(_message(error) ?? 'Gateway timeout'),
@@ -54,6 +57,14 @@ abstract final class ErrorMapper {
     final data = error.response?.data;
     if (data is Map<String, dynamic>) {
       return data['message'] as String? ?? data['error'] as String?;
+    }
+    return null;
+  }
+
+  static String? _traceId(DioException error) {
+    final data = error.response?.data;
+    if (data is Map<String, dynamic>) {
+      return data['traceId'] as String?;
     }
     return null;
   }

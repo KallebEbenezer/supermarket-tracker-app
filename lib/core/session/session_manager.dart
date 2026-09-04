@@ -76,12 +76,18 @@ class SessionManager {
   static const _kExpires = 'session.expiresAt';
   static const _kUser = 'session.user';
   static const _kEmpresaId = 'session.empresaId';
+  static const _kLojaId = 'session.lojaId';
+  static const _kSessaoCaixaId = 'session.sessaoCaixaId';
 
   final SecureStorage _secureStorage;
   final ValueNotifier<bool> isAuthenticated = ValueNotifier(false);
+  final ValueNotifier<bool> empresaIdChanged = ValueNotifier(false);
+  final ValueNotifier<bool> lojaChanged = ValueNotifier(false);
 
   AuthSession? _session;
   String? _empresaId;
+  String? _lojaId;
+  String? _sessaoCaixaId;
 
   /// Carrega a sessão persistida, se houver.
   Future<void> restore() async {
@@ -90,6 +96,8 @@ class SessionManager {
     final expires = await _secureStorage.read(_kExpires);
     final userJson = await _secureStorage.read(_kUser);
     final empresaId = await _secureStorage.read(_kEmpresaId);
+    final lojaId = await _secureStorage.read(_kLojaId);
+    final sessaoCaixaId = await _secureStorage.read(_kSessaoCaixaId);
     if (access != null && userJson != null) {
       _session = AuthSession(
         accessToken: access,
@@ -100,6 +108,8 @@ class SessionManager {
         ),
       );
       _empresaId = empresaId;
+      _lojaId = lojaId;
+      _sessaoCaixaId = sessaoCaixaId;
       isAuthenticated.value = true;
     }
   }
@@ -132,11 +142,15 @@ class SessionManager {
   Future<void> clear() async {
     _session = null;
     _empresaId = null;
+    _lojaId = null;
     await _secureStorage.delete(_kAccess);
     await _secureStorage.delete(_kRefresh);
     await _secureStorage.delete(_kExpires);
     await _secureStorage.delete(_kUser);
     await _secureStorage.delete(_kEmpresaId);
+    await _secureStorage.delete(_kLojaId);
+    await _secureStorage.delete(_kSessaoCaixaId);
+    _sessaoCaixaId = null;
     isAuthenticated.value = false;
   }
 
@@ -144,11 +158,27 @@ class SessionManager {
   String? get refreshToken => _session?.refreshToken;
   AuthUser? get currentUser => _session?.user;
   String? get empresaId => _empresaId;
+  String? get lojaId => _lojaId;
+  String? get sessaoCaixaId => _sessaoCaixaId;
 
   /// Define e persiste a empresa selecionada.
   Future<void> setEmpresaId(String empresaId) async {
     _empresaId = empresaId;
+    empresaIdChanged.value = !empresaIdChanged.value;
     await _secureStorage.write(_kEmpresaId, empresaId);
+  }
+
+  /// Define e persiste a loja selecionada.
+  Future<void> setLojaId(String lojaId) async {
+    _lojaId = lojaId;
+    lojaChanged.value = !lojaChanged.value;
+    await _secureStorage.write(_kLojaId, lojaId);
+  }
+
+  /// Define e persiste a sessão do caixa selecionada.
+  Future<void> setSessaoCaixaId(String sessaoCaixaId) async {
+    _sessaoCaixaId = sessaoCaixaId;
+    await _secureStorage.write(_kSessaoCaixaId, sessaoCaixaId);
   }
 
   /// Cabeçalho `Authorization: Bearer <token>`, ou `null` se não houver sessão.

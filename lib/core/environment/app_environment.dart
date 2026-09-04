@@ -15,6 +15,15 @@ class AppEnvironment {
   final bool enableLogs;
   final String apiBaseUrl;
 
+  /// Converte [apiBaseUrl] para o scheme de WebSocket (`ws://` / `wss://`).
+  /// Usado pelo [PaymentWebSocketService] para conectar notificações em tempo real.
+  String get webSocketBaseUrl {
+    if (apiBaseUrl.startsWith('https://')) {
+      return apiBaseUrl.replaceFirst('https://', 'wss://');
+    }
+    return apiBaseUrl.replaceFirst('http://', 'ws://');
+  }
+
   bool get isProduction => flavor == AppFlavor.prod;
 
   static Future<AppEnvironment> load() async {

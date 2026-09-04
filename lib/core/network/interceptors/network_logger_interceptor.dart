@@ -31,6 +31,16 @@ class NetworkLoggerInterceptor extends Interceptor {
     ResponseInterceptorHandler handler,
   ) {
     _record(response.requestOptions, statusCode: response.statusCode);
+    if (_environment.enableLogs) {
+      // DEBUG: captura response body para diagnosticar erros do backend.
+      // Usa print() para aparecer como tag "flutter" no adb logcat.
+      // ignore: avoid_print
+      print(
+        'HTTP_BODY ← ${response.statusCode} '
+        '${response.requestOptions.method} ${response.requestOptions.uri}\n'
+        'BODY: ${response.data}',
+      );
+    }
     handler.next(response);
   }
 
@@ -42,9 +52,14 @@ class NetworkLoggerInterceptor extends Interceptor {
       failed: true,
     );
     if (_environment.enableLogs) {
-      _logger.w(
-        'HTTP ← erro ${err.requestOptions.method} ${err.requestOptions.uri}',
-        error: err,
+      // DEBUG: captura erro detalhado do backend para diagnosticar 500 no PIX.
+      // ignore: avoid_print
+      print(
+        'HTTP_ERROR ← ${err.response?.statusCode} '
+        '${err.requestOptions.method} ${err.requestOptions.uri}\n'
+        'REQ BODY: ${err.requestOptions.data}\n'
+        'RESP BODY: ${err.response?.data}\n'
+        'ERR: $err',
       );
     }
     handler.next(err);

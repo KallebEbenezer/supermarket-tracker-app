@@ -34,7 +34,7 @@ class AuthInterceptor extends Interceptor {
     ErrorInterceptorHandler handler,
   ) async {
     final isRefreshAttempt = err.requestOptions.extra[_noAuthKey] == true;
-    if (err.response?.statusCode == 401 && !isRefreshAttempt) {
+    if ((err.response?.statusCode == 401 || err.response?.statusCode == 403) && !isRefreshAttempt) {
       final refreshToken = _sessionManager.refreshToken;
       if (refreshToken != null && refreshToken.isNotEmpty) {
         try {

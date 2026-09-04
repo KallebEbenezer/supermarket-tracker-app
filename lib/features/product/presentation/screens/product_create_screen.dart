@@ -177,15 +177,23 @@ class _ProductCreateScreenState extends ConsumerState<ProductCreateScreen> {
           context.go('/products/${updated.id}');
         }
       } else {
-        final created =
-            await ref.read(productCreateProvider.notifier).create(payload);
+        await ref.read(productCreateProvider.notifier).create(payload);
         if (mounted) {
+          // Limpa os campos para permitir criar outro produto
+          _codigoBarrasController.clear();
+          _nomeController.clear();
+          _precoVendaController.clear();
+          _precoCompraController.clear();
+          _estoqueMinimoController.clear();
+          setState(() => _photoPath = null);
+
           SnackBar.show(
             context,
             message: l10n.productCreated,
             type: SnackBarType.success,
           );
-          context.go('/products/${created.id}');
+          // Volta para a lista que será recarregada automaticamente
+          context.pop();
         }
       }
     } on Object catch (error) {

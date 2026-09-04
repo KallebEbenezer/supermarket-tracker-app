@@ -40,6 +40,8 @@ class AuthSession {
     required this.refreshToken,
     required this.user,
     this.expiresAt,
+    this.empresaId,
+    this.lojaId,
   });
 
   final String accessToken;
@@ -49,17 +51,25 @@ class AuthSession {
   /// Expiração do access token em milliseconds desde epoch.
   final int? expiresAt;
 
+  /// Empresa e loja padrão provisionadas automaticamente no registro/login.
+  final String? empresaId;
+  final String? lojaId;
+
   AuthSession copyWith({
     String? accessToken,
     String? refreshToken,
     AuthUser? user,
     int? expiresAt,
+    String? empresaId,
+    String? lojaId,
   }) =>
       AuthSession(
         accessToken: accessToken ?? this.accessToken,
         refreshToken: refreshToken ?? this.refreshToken,
         user: user ?? this.user,
         expiresAt: expiresAt ?? this.expiresAt,
+        empresaId: empresaId ?? this.empresaId,
+        lojaId: lojaId ?? this.lojaId,
       );
 }
 

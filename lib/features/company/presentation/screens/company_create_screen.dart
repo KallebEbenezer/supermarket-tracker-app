@@ -17,28 +17,17 @@ class CompanyCreateScreen extends ConsumerStatefulWidget {
 
 class _CompanyCreateScreenState extends ConsumerState<CompanyCreateScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _razaoSocialController = TextEditingController();
-  final _nomeFantasiaController = TextEditingController();
-  final _cnpjController = TextEditingController();
+  final _nomeController = TextEditingController();
   bool _submitting = false;
 
   @override
   void dispose() {
-    _razaoSocialController.dispose();
-    _nomeFantasiaController.dispose();
-    _cnpjController.dispose();
+    _nomeController.dispose();
     super.dispose();
   }
 
   String? _validateRequired(String? value, String fieldName) {
     if (value == null || value.trim().isEmpty) return fieldName;
-    return null;
-  }
-
-  String? _validateCnpj(String? value) {
-    if (value == null || value.trim().isEmpty) return null;
-    final digits = value.replaceAll(RegExp(r'\D'), '');
-    if (digits.length != 14) return l10n!.validationCnpjInvalid;
     return null;
   }
 
@@ -52,10 +41,10 @@ class _CompanyCreateScreenState extends ConsumerState<CompanyCreateScreen> {
 
     setState(() => _submitting = true);
     try {
+      final nome = _nomeController.text.trim();
       final payload = {
-        'razaoSocial': _razaoSocialController.text.trim(),
-        'nomeFantasia': _nomeFantasiaController.text.trim(),
-        'cnpj': _cnpjController.text.replaceAll(RegExp(r'\D'), ''),
+        'razaoSocial': nome,
+        'nomeFantasia': nome,
         'usuarioId': usuarioId,
       };
 
@@ -101,24 +90,10 @@ class _CompanyCreateScreenState extends ConsumerState<CompanyCreateScreen> {
                   ),
                   const SizedBox(height: AppSpacing.lg),
                   TextFormField(
-                    controller: _razaoSocialController,
+                    controller: _nomeController,
                     textCapitalization: TextCapitalization.words,
                     decoration: InputDecoration(labelText: l10n.companyRazaoSocial),
                     validator: (v) => _validateRequired(v, l10n.requiredField),
-                  ),
-                  const SizedBox(height: AppSpacing.md),
-                  TextFormField(
-                    controller: _nomeFantasiaController,
-                    textCapitalization: TextCapitalization.words,
-                    decoration: InputDecoration(labelText: l10n.companyNomeFantasia),
-                    validator: (v) => _validateRequired(v, l10n.requiredField),
-                  ),
-                  const SizedBox(height: AppSpacing.md),
-                  TextFormField(
-                    controller: _cnpjController,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(labelText: l10n.companyCnpj),
-                    validator: _validateCnpj,
                   ),
                   const SizedBox(height: AppSpacing.lg),
                   PrimaryButton(

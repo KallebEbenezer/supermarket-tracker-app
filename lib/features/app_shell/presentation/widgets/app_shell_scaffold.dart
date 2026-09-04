@@ -29,12 +29,18 @@ class AppShellScaffold extends ConsumerWidget {
     final active = destinationForLocation(state.matchedLocation);
     final primaries = primaryDestinations;
     final user = ref.watch(currentUserProvider);
-    final lojaId = ref.watch(sessionManagerProvider).lojaId;
-    final hasLoja = lojaId != null;
 
     return Scaffold(
       appBar: AppBar(
         title: Text(active?.label(l10n) ?? l10n.appName),
+        actions: [
+          // Acesso rápido ao dashboard (fora da barra inferior).
+          IconButton(
+            icon: const Icon(AppIcons.dashboard),
+            tooltip: l10n.dashboardTitle,
+            onPressed: () => context.go('/dashboard'),
+          ),
+        ],
       ),
       drawer: Drawer(
         child: Column(
@@ -72,20 +78,17 @@ class AppShellScaffold extends ConsumerWidget {
       ),
       body: child,
       floatingActionButton: active?.fab?.call(context),
-      bottomNavigationBar: hasLoja
-          ? NavigationBar(
-              selectedIndex: _activePrimaryIndex(primaries, active),
-              destinations: [
-                for (final d in primaries)
-                  NavigationDestination(
-                    icon: Icon(d.icon),
-                    label: d.label(l10n),
-                  ),
-              ],
-              onDestinationSelected: (index) =>
-                  context.go(primaries[index].route),
-            )
-          : null,
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: _activePrimaryIndex(primaries, active),
+        destinations: [
+          for (final d in primaries)
+            NavigationDestination(
+              icon: Icon(d.icon),
+              label: d.label(l10n),
+            ),
+        ],
+        onDestinationSelected: (index) => context.go(primaries[index].route),
+      ),
     );
   }
 

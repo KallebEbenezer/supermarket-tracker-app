@@ -24,9 +24,11 @@ abstract final class NetworkModule {
     final dio = Dio(
       BaseOptions(
         baseUrl: environment.apiBaseUrl,
-        connectTimeout: const Duration(seconds: 15),
-        sendTimeout: const Duration(seconds: 15),
-        receiveTimeout: const Duration(seconds: 30),
+        // Timeouts generosos: o backend no Render (plano gratuito) hiberna após
+        // 15 min de inatividade e o primeiro request sofre cold start (~30-60s).
+        connectTimeout: const Duration(seconds: 60),
+        sendTimeout: const Duration(seconds: 60),
+        receiveTimeout: const Duration(seconds: 90),
         responseType: ResponseType.json,
         headers: const {'Accept': 'application/json'},
       ),

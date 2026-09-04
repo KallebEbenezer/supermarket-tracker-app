@@ -95,6 +95,7 @@
   "resetSubmit": "Redefinir senha",
   "resetSuccess": "Senha redefinida com sucesso!",
   "noCashRegisters": "Nenhum caixa cadastrado",
+  "cashRegisterName": "Nome do caixa",
   "cashRegisterCreated": "Caixa criado com sucesso",
   "cashRegisterActions": "Ações do caixa",
   "cashSessionOpen": "Abrir sessão",

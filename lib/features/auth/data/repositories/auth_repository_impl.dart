@@ -16,7 +16,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<AuthSession> login(LoginCredentials credentials) async {
     final session = (await _dataSource.login(credentials.toJson())).requireData();
     await _sessionManager.saveSession(session);
-    await _trySelectEmpresa(session.user.id);
+    await _selectEmpresaLoja(session);
     return session;
   }
 
@@ -24,8 +24,20 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<AuthSession> registro(SignupPayload payload) async {
     final session = (await _dataSource.registro(payload.toJson())).requireData();
     await _sessionManager.saveSession(session);
-    await _trySelectEmpresa(session.user.id);
+    await _selectEmpresaLoja(session);
     return session;
+  }
+
+  /// Seleciona a empresa/loja retornadas pelo backend (auto-provisionadas no
+  /// registro/login). Como fallback para backends antigos sem esses campos,
+  /// busca e seleciona a primeira empresa do usuário.
+  Future<void> _selectEmpresaLoja(AuthSession session) async {
+    if (session.empresaId != null && session.lojaId != null) {
+      await _sessionManager.setEmpresaId(session.empresaId!);
+      await _sessionManager.setLojaId(session.lojaId!);
+      return;
+    }
+    await _trySelectEmpresa(session.user.id);
   }
 
   /// Busca as empresas do usuário e seleciona a primeira, se disponível.

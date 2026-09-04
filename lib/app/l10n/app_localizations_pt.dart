@@ -295,6 +295,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get noCashRegisters => 'Nenhum caixa cadastrado';
 
   @override
+  String get cashRegisterName => 'Nome do caixa';
+
+  @override
   String get cashRegisterCreated => 'Caixa criado com sucesso';
 
   @override
@@ -1052,6 +1055,9 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get noCashRegisters => 'Nenhum caixa cadastrado';
+
+  @override
+  String get cashRegisterName => 'Nome do caixa';
 
   @override
   String get cashRegisterCreated => 'Caixa criado com sucesso';

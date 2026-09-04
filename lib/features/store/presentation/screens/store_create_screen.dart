@@ -17,26 +17,19 @@ class StoreCreateScreen extends ConsumerStatefulWidget {
 }
 
 class _StoreCreateScreenState extends ConsumerState<StoreCreateScreen> {
-  final _codigoController = TextEditingController();
   final _nomeController = TextEditingController();
-  final _empresaIdController = TextEditingController();
-  final _statusController = TextEditingController();
 
   @override
   void dispose() {
-    _codigoController.dispose();
     _nomeController.dispose();
-    _empresaIdController.dispose();
-    _statusController.dispose();
     super.dispose();
   }
 
   Future<void> _submit() async {
     final l10n = AppLocalizations.of(context)!;
-    final codigo = _codigoController.text.trim();
     final nome = _nomeController.text.trim();
 
-    if (codigo.isEmpty || nome.isEmpty) {
+    if (nome.isEmpty) {
       SnackBar.show(
         context,
         message: l10n.requiredField,
@@ -47,10 +40,8 @@ class _StoreCreateScreenState extends ConsumerState<StoreCreateScreen> {
 
     try {
       final created = await ref.read(storeCreateProvider.notifier).create({
-        'codigo': codigo,
         'nome': nome,
         'empresaId': ref.read(currentCompanyIdProvider) ?? '',
-        'status': _statusController.text.trim(),
       });
       if (mounted) {
         SnackBar.show(
@@ -77,23 +68,8 @@ class _StoreCreateScreenState extends ConsumerState<StoreCreateScreen> {
       padding: const EdgeInsets.all(AppSpacing.md),
       children: [
         AppTextField(
-          controller: _codigoController,
-          label: l10n.storeCode,
-        ),
-        const SizedBox(height: AppSpacing.md),
-        AppTextField(
           controller: _nomeController,
           label: l10n.storeName,
-        ),
-        const SizedBox(height: AppSpacing.md),
-        AppTextField(
-          controller: _empresaIdController,
-          label: l10n.storeCompany,
-        ),
-        const SizedBox(height: AppSpacing.md),
-        AppTextField(
-          controller: _statusController,
-          label: l10n.storeStatus,
         ),
         const SizedBox(height: AppSpacing.lg),
         PrimaryButton(

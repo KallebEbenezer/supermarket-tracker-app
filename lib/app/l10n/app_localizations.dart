@@ -669,6 +669,12 @@ abstract class AppLocalizations {
   /// **'Nenhum caixa cadastrado'**
   String get noCashRegisters;
 
+  /// No description provided for @cashRegisterName.
+  ///
+  /// In pt_BR, this message translates to:
+  /// **'Nome do caixa'**
+  String get cashRegisterName;
+
   /// No description provided for @cashRegisterCreated.
   ///
   /// In pt_BR, this message translates to:

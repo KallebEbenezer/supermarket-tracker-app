@@ -90,21 +90,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
     ]),
     redirect: (context, state) {
       final authenticated = sessionManager.isAuthenticated.value;
-      final empresaId = sessionManager.empresaId;
-      final lojaId = sessionManager.lojaId;
       final location = state.matchedLocation;
       final isPublic = _publicRoutes.contains(location);
 
       if (!authenticated && !isPublic) return '/login';
       if (authenticated && isPublic) return '/dashboard';
-      if (authenticated && empresaId == null && location != '/company/new') {
-        return '/company/new';
-      }
-      if (authenticated && empresaId != null && lojaId == null &&
-          location != '/stores' && location != '/stores/new' &&
-          !location.startsWith('/stores/')) {
-        return '/stores';
-      }
       return null;
     },
     routes: [

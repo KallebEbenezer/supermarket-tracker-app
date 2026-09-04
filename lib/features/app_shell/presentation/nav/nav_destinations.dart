@@ -36,7 +36,6 @@ final List<NavDestination> kNavDestinations = [
     label: (l10n) => l10n.dashboardTitle,
     icon: AppIcons.dashboard,
     route: '/dashboard',
-    primary: true,
   ),
   NavDestination(
     id: 'stores',
@@ -73,19 +72,20 @@ final List<NavDestination> kNavDestinations = [
     label: (l10n) => l10n.navStock,
     icon: AppIcons.stock,
     route: '/stock',
-    primary: true,
   ),
   NavDestination(
     id: 'cash',
     label: (l10n) => l10n.navCash,
     icon: AppIcons.cash,
     route: '/cash',
+    primary: true,
   ),
   NavDestination(
     id: 'customers',
     label: (l10n) => l10n.navCustomers,
     icon: AppIcons.customers,
     route: '/customers',
+    primary: true,
     fab: (context) => FloatingActionButton(
       onPressed: () => context.go('/customers/new'),
       tooltip: 'Novo cliente',

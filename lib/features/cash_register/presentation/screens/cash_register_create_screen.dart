@@ -20,26 +20,31 @@ class CashRegisterCreateScreen extends ConsumerStatefulWidget {
 
 class _CashRegisterCreateScreenState
     extends ConsumerState<CashRegisterCreateScreen> {
-  final _codigoController = TextEditingController();
   final _nomeController = TextEditingController();
 
   @override
   void dispose() {
-    _codigoController.dispose();
     _nomeController.dispose();
     super.dispose();
   }
 
   Future<void> _submit() async {
     final l10n = AppLocalizations.of(context)!;
-    final codigo = _codigoController.text.trim();
     final nome = _nomeController.text.trim();
     final lojaId = ref.read(sessionManagerProvider).lojaId ?? '';
 
-    if (codigo.isEmpty || nome.isEmpty || lojaId.isEmpty) {
+    if (nome.isEmpty) {
       SnackBar.show(
         context,
         message: l10n.requiredField,
+        type: SnackBarType.warning,
+      );
+      return;
+    }
+    if (lojaId.isEmpty) {
+      SnackBar.show(
+        context,
+        message: l10n.noCompany,
         type: SnackBarType.warning,
       );
       return;
@@ -48,7 +53,6 @@ class _CashRegisterCreateScreenState
     try {
       final created = await ref.read(cashRegisterCreateProvider.notifier).create({
         'lojaId': lojaId,
-        'codigo': codigo,
         'nome': nome,
       });
       if (mounted) {
@@ -76,13 +80,8 @@ class _CashRegisterCreateScreenState
       padding: const EdgeInsets.all(AppSpacing.md),
       children: [
         AppTextField(
-          controller: _codigoController,
-          label: l10n.storeCode,
-        ),
-        const SizedBox(height: AppSpacing.md),
-        AppTextField(
           controller: _nomeController,
-          label: l10n.storeName,
+          label: l10n.cashRegisterName,
         ),
         const SizedBox(height: AppSpacing.lg),
         PrimaryButton(

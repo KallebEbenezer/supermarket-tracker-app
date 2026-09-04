@@ -37,10 +37,18 @@ class RetryInterceptor extends Interceptor {
     }
   }
 
-  bool _canRetry(DioException error, int retries) =>
-      retries < maxRetries &&
-      error.requestOptions.method.toUpperCase() == 'GET' &&
-      (error.type == DioExceptionType.connectionError ||
-          error.type == DioExceptionType.connectionTimeout ||
-          error.type == DioExceptionType.receiveTimeout);
+  bool _canRetry(DioException error, int retries) {
+    if (retries >= maxRetries) return false;
+    // Conexão nunca chegou ao servidor (ex.: cold start do Render) — seguro
+    // retentar em qualquer método, inclusive POST de login/registro.
+    if (error.type == DioExceptionType.connectionError ||
+        error.type == DioExceptionType.connectionTimeout) {
+      return true;
+    }
+    // Response perdida pode ter sido processada no servidor — só retenta GET.
+    if (error.type == DioExceptionType.receiveTimeout) {
+      return error.requestOptions.method.toUpperCase() == 'GET';
+    }
+    return false;
+  }
 }

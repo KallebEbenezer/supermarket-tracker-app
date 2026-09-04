@@ -16,6 +16,8 @@ class AuthMapper {
         email: (usuario['email'] as String?) ?? '',
         papel: usuario['papel'] as String?,
       ),
+      empresaId: json['empresaId'] as String?,
+      lojaId: json['lojaId'] as String?,
     );
   }
 

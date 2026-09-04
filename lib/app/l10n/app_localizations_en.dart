@@ -295,6 +295,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noCashRegisters => 'No cash registers registered';
 
   @override
+  String get cashRegisterName => 'Cash register name';
+
+  @override
   String get cashRegisterCreated => 'Cash register created successfully';
 
   @override

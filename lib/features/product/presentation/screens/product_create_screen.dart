@@ -121,7 +121,7 @@ class _ProductCreateScreenState extends ConsumerState<ProductCreateScreen> {
     final precoCompra = _precoCompraController.text.trim();
     final estoqueMinimo = _estoqueMinimoController.text.trim();
 
-    if (codigoBarras.isEmpty || nome.isEmpty || precoVenda.isEmpty) {
+    if (nome.isEmpty || precoVenda.isEmpty) {
       SnackBar.show(
         context,
         message: l10n.requiredField,

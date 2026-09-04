@@ -95,6 +95,7 @@
   "resetSubmit": "Reset password",
   "resetSuccess": "Password reset successfully!",
   "noCashRegisters": "No cash registers registered",
+  "cashRegisterName": "Cash register name",
   "cashRegisterCreated": "Cash register created successfully",
   "cashRegisterActions": "Cash register actions",
   "cashSessionOpen": "Open session",

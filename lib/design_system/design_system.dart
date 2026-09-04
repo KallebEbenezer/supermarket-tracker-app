@@ -5,6 +5,7 @@ export 'components/display.dart';
 export 'components/feedback.dart';
 export 'components/inputs.dart';
 export 'components/states.dart';
+export 'components/swipeable_list_tile.dart';
 export 'tokens/app_colors.dart';
 export 'tokens/app_effects.dart';
 export 'tokens/app_icons.dart';

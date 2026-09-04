@@ -138,6 +138,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get productCreated => 'Product created successfully';
 
   @override
+  String get productUpdated => 'Product updated successfully';
+
+  @override
+  String get editProduct => 'Edit product';
+
+  @override
   String get productName => 'Name';
 
   @override
@@ -314,4 +320,439 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cashObservation => 'Observation';
+
+  @override
+  String get validationNameRequired => 'Enter your name';
+
+  @override
+  String get validationNameMinLength => 'Name must be at least 3 characters';
+
+  @override
+  String get validationEmailRequired => 'Enter your email';
+
+  @override
+  String get validationEmailInvalid => 'Invalid email';
+
+  @override
+  String get validationPasswordRequired => 'Enter your password';
+
+  @override
+  String get validationPasswordMinLength =>
+      'Password must be at least 6 characters';
+
+  @override
+  String get noCompany => 'No company found';
+
+  @override
+  String get noCompanyMessage => 'Create a company to start using the system.';
+
+  @override
+  String get createCompany => 'Create company';
+
+  @override
+  String get scanBarcode => 'Scan barcode';
+
+  @override
+  String get takePhoto => 'Take photo';
+
+  @override
+  String get productPhoto => 'Product photo';
+
+  @override
+  String get saleQueue => 'Item queue';
+
+  @override
+  String get finishSale => 'Finish sale';
+
+  @override
+  String get editSale => 'Edit sale';
+
+  @override
+  String get removeItem => 'Remove item';
+
+  @override
+  String get pixQrCode => 'PIX QR Code';
+
+  @override
+  String get bankAccount => 'Bank account';
+
+  @override
+  String get bankName => 'Bank name';
+
+  @override
+  String get bankAgency => 'Agency';
+
+  @override
+  String get bankAccountNumber => 'Account number';
+
+  @override
+  String get bankAccountType => 'Account type';
+
+  @override
+  String get bankAccountHolder => 'Account holder';
+
+  @override
+  String get bankAccountDocument => 'Holder document';
+
+  @override
+  String get pixKey => 'PIX key';
+
+  @override
+  String get bankCurrent => 'Checking';
+
+  @override
+  String get bankSavings => 'Savings';
+
+  @override
+  String get bankPayment => 'Payment';
+
+  @override
+  String get linkBankAccount => 'Link bank account';
+
+  @override
+  String get bankAccountLinked => 'Bank account linked successfully';
+
+  @override
+  String get noBankAccounts => 'No bank accounts registered';
+
+  @override
+  String get createBankAccountMessage =>
+      'Create a bank account to start receiving payments.';
+
+  @override
+  String get bankAccountRequired => 'Select a bank account to generate the PIX';
+
+  @override
+  String get bankAccountCreated => 'Bank account created successfully';
+
+  @override
+  String get bankAccountUpdated => 'Bank account updated successfully';
+
+  @override
+  String get bankAccountDeleted => 'Bank account deleted successfully';
+
+  @override
+  String get editBankAccount => 'Edit bank account';
+
+  @override
+  String get principalAccount => 'Primary account';
+
+  @override
+  String get selectBank => 'Select a bank';
+
+  @override
+  String get cashSessionActive => 'Active session';
+
+  @override
+  String get cashSessionRequired =>
+      'Open a cash session before finalizing the sale';
+
+  @override
+  String get cashSessionHistory => 'Session history';
+
+  @override
+  String get stockIn => 'Entry';
+
+  @override
+  String get stockOut => 'Exit';
+
+  @override
+  String get stockAdjust => 'Adjustment';
+
+  @override
+  String get stockSale => 'Sale';
+
+  @override
+  String get stockCancellation => 'Cancellation';
+
+  @override
+  String get registerStock => 'Register movement';
+
+  @override
+  String get stockMovementCreated => 'Movement registered successfully';
+
+  @override
+  String get stockMovementTitle => 'Stock Movements';
+
+  @override
+  String get stockMovementType => 'Type';
+
+  @override
+  String get stockMovementQuantity => 'Quantity';
+
+  @override
+  String get stockMovementReason => 'Reason';
+
+  @override
+  String get stockMovementProduct => 'Product';
+
+  @override
+  String get selectProduct => 'Select a product';
+
+  @override
+  String get selectType => 'Select a type';
+
+  @override
+  String get stockMovementQuantityHint => 'Enter the quantity';
+
+  @override
+  String get stockMovementReasonHint => 'Optional reason';
+
+  @override
+  String get barcodeScanTitle => 'Scan barcode';
+
+  @override
+  String get barcodeScanInstruction =>
+      'Position the barcode within the camera view';
+
+  @override
+  String get barcodeScanHint => 'Position the barcode in the indicated area';
+
+  @override
+  String get barcodeManualEntry => 'Enter manually';
+
+  @override
+  String get barcodeScanError => 'Could not read the barcode';
+
+  @override
+  String get photoCaptureTitle => 'Take product photo';
+
+  @override
+  String get photoCaptureInstruction =>
+      'Position the product in the camera to take the photo';
+
+  @override
+  String get retakePhoto => 'Retake photo';
+
+  @override
+  String get usePhoto => 'Use photo';
+
+  @override
+  String get skipPhoto => 'Skip photo';
+
+  @override
+  String get photoAttached => 'Photo attached';
+
+  @override
+  String get noPhotoAttached => 'No photo attached';
+
+  @override
+  String get addPhoto => 'Add photo';
+
+  @override
+  String get newSale => 'New sale';
+
+  @override
+  String get saleSummary => 'Sale summary';
+
+  @override
+  String get subtotal => 'Subtotal';
+
+  @override
+  String get total => 'Total';
+
+  @override
+  String get quantity => 'Qty';
+
+  @override
+  String get unitPrice => 'Unit price';
+
+  @override
+  String get productNotFound => 'Product not found for this barcode';
+
+  @override
+  String get barcodeNotFound => 'No product found for this barcode';
+
+  @override
+  String get emptyQueue => 'Scan products to start a sale';
+
+  @override
+  String get saleFinalized => 'Sale finalized successfully';
+
+  @override
+  String get saleFinalizing => 'Finalizing sale...';
+
+  @override
+  String get copyPixCode => 'Copy PIX code';
+
+  @override
+  String get pixCodeCopied => 'PIX code copied';
+
+  @override
+  String get newSaleCta => 'Tap the button below to start scanning products';
+
+  @override
+  String get close => 'Close';
+
+  @override
+  String get confirm => 'Confirm';
+
+  @override
+  String get saleNumber => 'Sale #';
+
+  @override
+  String get companyCreated => 'Company created successfully';
+
+  @override
+  String get companyRazaoSocial => 'Legal name';
+
+  @override
+  String get companyNomeFantasia => 'Trade name';
+
+  @override
+  String get companyCnpj => 'CNPJ';
+
+  @override
+  String get validationCnpjInvalid => 'CNPJ must contain 14 digits';
+
+  @override
+  String get selectingStore => 'Selecting store...';
+
+  @override
+  String get createStoreMessage => 'Create a store to start using the system.';
+
+  @override
+  String get storeSelected => 'Store selected successfully';
+
+  @override
+  String get createCashRegisterMessage =>
+      'Create a cash register to start recording sales.';
+
+  @override
+  String get nfcAvailable => 'NFC available';
+
+  @override
+  String get nfcUnavailable => 'NFC not available on this device';
+
+  @override
+  String get nfcReading => 'Waiting for card...';
+
+  @override
+  String get nfcReadSuccess => 'Card read successfully';
+
+  @override
+  String get nfcTagId => 'Card UID';
+
+  @override
+  String get nfcReadError => 'Error reading card';
+
+  @override
+  String get pixPolling => 'Checking PIX payment';
+
+  @override
+  String get pixWaiting => 'Waiting for payment...';
+
+  @override
+  String get pixApproved => 'Payment approved!';
+
+  @override
+  String get pixDeclined => 'Payment declined';
+
+  @override
+  String get pixTimeout => 'Timed out waiting for payment';
+
+  @override
+  String get pollingElapsed => 'Elapsed:';
+
+  @override
+  String get retryPolling => 'Try again';
+
+  @override
+  String get paymentMethod => 'Payment method';
+
+  @override
+  String get paymentPix => 'PIX';
+
+  @override
+  String get paymentCard => 'Card';
+
+  @override
+  String get paymentCash => 'Cash';
+
+  @override
+  String get paymentAmount => 'Payment amount';
+
+  @override
+  String get amountReceived => 'Amount received';
+
+  @override
+  String get change => 'Change';
+
+  @override
+  String get changeAmount => 'Change';
+
+  @override
+  String get addPayment => 'Add payment';
+
+  @override
+  String get removePayment => 'Remove payment';
+
+  @override
+  String get splitPayment => 'Split payment';
+
+  @override
+  String get remaining => 'Remaining';
+
+  @override
+  String get totalPaid => 'Total paid';
+
+  @override
+  String get totalDue => 'Total due';
+
+  @override
+  String get cardType => 'Card type';
+
+  @override
+  String get cardDebit => 'Debit';
+
+  @override
+  String get cardCredit => 'Credit';
+
+  @override
+  String get installments => 'Installments';
+
+  @override
+  String get nfcRead => 'Tap card';
+
+  @override
+  String get nfcReadAgain => 'Read again';
+
+  @override
+  String get nfcTapCard => 'Tap your card on the device';
+
+  @override
+  String get confirmPayment => 'Confirm payment';
+
+  @override
+  String get processing => 'Processing...';
+
+  @override
+  String get approved => 'Approved';
+
+  @override
+  String get declined => 'Declined';
+
+  @override
+  String get saleConfirmed => 'Sale confirmed';
+
+  @override
+  String get backToSales => 'Back to sales';
+
+  @override
+  String get paymentMethods => 'Payment methods';
+
+  @override
+  String get paymentIncomplete =>
+      'Incomplete payment. Add payments to cover the total.';
+
+  @override
+  String get pixQrCodeHint =>
+      'QR Code will be generated after sale finalization';
+
+  @override
+  String get pixQrCodeError => 'Unable to generate QR Code';
+
+  @override
+  String get productAlreadyScanned =>
+      'This product has already been scanned in this session';
 }

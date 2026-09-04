@@ -39,7 +39,9 @@ class StoreCreateNotifier extends Notifier<StoreCreateState> {
     state = state.copyWith(submitting: true, error: null);
     try {
       final created = await ref.read(storeRepositoryProvider).createStore(payload);
+      // Invalida todos os providers de loja para forçar reload
       ref.invalidate(storeListProvider);
+      ref.invalidate(storeDetailProvider);
       state = state.copyWith(submitting: false);
       return created;
     } on Object catch (error) {
